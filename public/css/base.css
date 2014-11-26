@@ -1,0 +1,72 @@
+/* Define mobile styles */
+@media only screen 
+{
+  /*Commons.*/
+  body,
+  #ui-datepicker-div{font-family: "raleway-regular", arial;}
+  .slogan{font-size: 11px;}
+  .tabs-content > .content.active{width: 100%;}
+  .main{padding-top: 10px; padding-bottom: 30px;}
+  /*BUG:  Solves Foundation JS bug that's related to CSS.*/
+  meta.foundation-data-attribute-namespace {font-family: false;}
+  form{font-size: 13px;}
+  .ui-datepicker-title{font-size: 14px;}
+  .ui-datepicker th{font-size: 12px;}
+  .row .row{margin-left: 0; margin-right: 0;}
+  
+  .avatar{max-width: 160px;}
+  .main .work{max-width: 250px;}
+  
+  .main .work,
+  .avatar{height: auto;}
+  
+  table{width: 100%;}
+  
+  header nav ul li a{font-size: 12px;}
+  
+  h5, p{font-size: 13px; margin-bottom: 3px;}
+  hr{margin: 8px;}
+  
+  table .button{margin: 0;}
+  table tbody tr td, table tr td{padding-top: 2px; padding-bottom: 2px;}
+  /*/Commons.*/
+  
+  /*Home.*/
+  
+  #home.index .expandable{display: none;}
+  #home.index .summary.panel{padding-bottom: 5px;}
+  #home.index ul{list-style-type: none;}
+  #home .listing.panel{padding-bottom: 0; margin-bottom: 0;}
+  #home .listing.panel .button{margin-bottom: 0;}
+  /*/Home.*/
+  
+  /*Applicant.*/
+  #applicant.read .comments .comment{margin-top: 8px; margin-bottom: 4px;}
+  #applicant.read .comments{margin-top: 8px;}
+  #applicant.read .comments .dateTime{color: #666; font-size: 13px; padding-top: 3px;}
+  /*/Applicant.*/
+}
+
+/* min-width 641px, medium screens */
+@media only screen and (min-width: 40.063em) 
+{ 
+  /*Commons.*/
+    #map{min-height: 250px;}
+    header .logo{margin-top: 30px;}
+    header nav ul
+    {
+        margin-top: 40px;
+        margin-left: 0;
+    }
+    header nav ul li{margin-bottom: 3px;}
+    /*/Commons.*/
+} 
+
+
+@media only screen and (min-width: 64.063em) { } /* min-width 1025px, large screens */
+
+
+@media only screen and (min-width: 90.063em) { } /* min-width 1441px, xlarge screens */
+
+
+@media only screen and (min-width: 120.063em) { } /* min-width 1921px, xxlarge screens */
