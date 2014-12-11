@@ -3,7 +3,17 @@
 {
   /*Commons.*/
   body,
-  #ui-datepicker-div{font-family: "raleway-regular", arial;}
+  #ui-datepicker-div{
+    font-family: "raleway-regular", arial;
+    font-size: 14px;
+  }
+
+  .tabs dd > a,
+  input[type="text"],
+  textarea,
+  select,
+  #home.index ul{font-size: 12px;}
+
   .slogan{font-size: 11px;}
   .tabs-content > .content.active{width: 100%;}
   .main{padding-top: 10px; padding-bottom: 30px;}
@@ -29,6 +39,10 @@
   
   table .button{margin: 0;}
   table tbody tr td, table tr td{padding-top: 2px; padding-bottom: 2px;}
+
+  button.small,
+  .button.small{padding: 8px;}
+  .postfix.button{width: 30px;}
   /*/Commons.*/
   
   /*Home.*/

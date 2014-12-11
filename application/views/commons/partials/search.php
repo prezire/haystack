@@ -9,7 +9,9 @@
           <input type="text" name="keywords" placeholder="Keywords">
         </div>
         <div class="small-2 columns">
-          <a href="#" class="button postfix">Search</a>
+          <a href="#" class="button postfix">
+            <i class="fa fa-search"></i>
+          </a>
         </div>
       </div>
     </div>

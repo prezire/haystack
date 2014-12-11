@@ -16,16 +16,18 @@
 	
 	<title>Simplifie - Haystack</title>
 	
-    
     <link rel="stylesheet" href="<?php echo base_url('public/css/reset.css'); ?>" />
     <link rel="stylesheet" href="<?php echo base_url('public/css/main.css'); ?>" />
     <link rel="stylesheet" href="<?php echo base_url('public/libs/foundation-5.4.7/css/foundation.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/libs/font-awesome-4.2.0/css/font-awesome.min.css'); ?>" />
     <link rel="stylesheet" href="<?php echo base_url('public/css/base.css'); ?>" />
   
     <script src="<?php echo base_url('public/libs/foundation-5.4.7/js/vendor/modernizr.js'); ?>"></script>
 
     <!--script type="text/javascript" src="<?php echo base_url('public/js/jquery.js'); ?>"></script-->
     <script type="text/javascript" src="<?php echo base_url('public/libs/foundation-5.4.7/js/vendor/jquery.js'); ?>"></script>
+
+    <script src="<?php echo base_url('public/libs/imgLiquid-master/js/imgLiquid-min.js'); ?>"></script>
     
     <link rel="stylesheet" href="<?php echo base_url('public/libs'); ?>/jquery-ui-1.8.21.custom/development-bundle/themes/base/jquery.ui.all.css">
 	<script src="<?php echo base_url('public/libs'); ?>/jquery-ui-1.8.21.custom/development-bundle/jquery-1.7.2.js"></script>

@@ -6,7 +6,11 @@
   <div class="row">
     <div class="listing panel">
       <div class="row">
-        <a href="#" class="large-2 columns button small radius btnShowListing">Listing</a>
+        <div class="large-2 columns">
+          <a href="#" class="button small radius btnShowListing">
+            <i class="fa fa-list"></i>
+          </a>
+        </div>
       </div>
       <br />
       <div class="row expandable">
