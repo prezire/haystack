@@ -73,6 +73,15 @@ $config = array
 			'rules' => ''
 		)
 	),
+  'resume/update' => array
+	(
+		array
+		(
+			'field' => '',
+			'label' => '',
+			'rules' => ''
+		)
+	),
   'auth' => array
     (
       array

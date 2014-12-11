@@ -29,17 +29,46 @@
       $this->db->create('resumes', array('full_name' => $fName));
       return $this->read($this->db->result_id());
     }
-		public final function read($id)
+    public final function readByApplicantId($applicantId)
+    {
+      $r = $this->db->get_where
+      (
+        'resumes', 
+        array
+        (
+          'applicant_id' => 
+          $applicantId
+        )
+      )->row();
+      return $this->readDetails($r->id);
+    }
+    public final function read($id)
+    {
+      return $this->db->get_where('resumes', array('id' => $id));
+    }
+		public final function readDetails($id)
 		{
-      $this->db->select('r.*');
+      $this->db->select('*, u.id user_id, r.id resume_id');
 			$this->db->from('resumes r');
-      $this->db->join('work_histories wh', 'wh.resume_id = r.id');
-      $this->db->join('educations e', 'e.resume_id = r.id');
-      $this->db->join('skills s', 's.resume_id = r.id');
-      $this->db->join('certifcations c', 'c.resume_id = r.id');
-      $this->db->join('additional_informations ai', 'ai.resume_id = r.id');
-      $this->db->where('id', $id);
-      return $this->db->get();
+      $this->db->join('applicants a', 'a.id = r.applicant_id');
+      $this->db->join('users u', 'u.id = a.user_id');
+      $this->db->where('r.id', $id);
+      $resume = $this->db->get()->row();
+      $works = $this->db->get_where('work_histories', array('resume_id' => $id))->result();
+      $eds = $this->db->get_where('educations', array('resume_id' => $id))->result();
+      $skills = $this->db->get_where('skills', array('resume_id' => $id))->result();
+      $certs = $this->db->get_where('certifications', array('resume_id' => $id))->result();
+      $infos = $this->db->get_where('additional_informations', array('resume_id' => $id))->row();
+      $a = array
+      (
+        'resume' => $resume,
+        'work_histories' => $works,
+        'educations' => $eds,
+        'skills' => $skills,
+        'certifications' => $certs,
+        'additional_informations' => $infos
+      );
+      return $a;
 		}
 		public final function update()
 		{

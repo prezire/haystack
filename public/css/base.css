@@ -59,6 +59,17 @@
   #applicant.read .comments{margin-top: 8px;}
   #applicant.read .comments .dateTime{color: #666; font-size: 13px; padding-top: 3px;}
   /*/Applicant.*/
+
+  /*Resume.*/
+  #resume li{list-style-type: none; font-size: 12px;}
+  #resume .close,
+  #resume i{font-size: 15px;}
+  #resume i{cursor: pointer; cursor: hand;}
+  #resume input[type="text"]{height: 30px;}
+  #resume input[type="text"],
+  #resume textarea{font-size: 11px; padding: 4px; margin-bottom: 4px;}
+  #resume textarea{height: 100px;}
+  /*/Resume.*/
 }
 
 /* min-width 641px, medium screens */

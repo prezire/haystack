@@ -41,13 +41,43 @@ class Resume extends CI_Controller
 	{
 		showView('resumes/read', array('resume' => $this->resumemodel->read($id)->row()));
 	}
+  public final function updateBySession()
+  {
+    $uId = getLoggedUser()->id;
+    $this->load->model('applicantmodel');
+    $applId = $this->applicantmodel->readByUserId($uId)->row()->id;
+    $a = $this->resumemodel->readByApplicantId($applId);
+    if($this->input->post())
+    {
+      if($this->form_validation->run('resume/update'))
+      {
+        $b = $this->resumemodel->update()->row();
+        if($b)
+        {
+          //showJsonView(array('success' => true));
+        }
+        else
+        {
+          //showJsonView(array('success' => false, 'message' => 'Error updating resume.'));
+        }
+      }
+      else
+      {
+        //showJsonView(array('success' => false, 'message' => validation_errors()));
+      }
+    }
+    else
+    {
+      showView('resumes/update', $a);
+    }
+  }
 	public final function update($id = null)
   {
     $o = $this->resumemodel->read($id)->row();
     $a = array('resume' => $o);
     if($this->input->post())
     {
-      if($this->form_validation->run())
+      if($this->form_validation->run('resume/update'))
       {
         $b = $this->resumemodel->update()->row();
         if($b)
