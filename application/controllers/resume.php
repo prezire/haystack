@@ -11,6 +11,12 @@ class Resume extends CI_Controller
     $o = $this->resumemodel->index()->result();
     showView('resumes/index', array('resumes' => $o));
   }
+  //@param  $recipients   Comma-separated string.
+  public final function forward($applicantId, $recipients)
+  {
+    //$this->exportResume($applicantId);
+
+  }
   public final function create()
   {
     if($this->input->post())
@@ -43,13 +49,16 @@ class Resume extends CI_Controller
 	}
   public final function updateBySession()
   {
+    if(!isLoggedIn()) 
+      redirect(site_url('auth/login'));
+    //
     $uId = getLoggedUser()->id;
     $this->load->model('applicantmodel');
     $applId = $this->applicantmodel->readByUserId($uId)->row()->id;
     $a = $this->resumemodel->readByApplicantId($applId);
     if($this->input->post())
     {
-      if($this->form_validation->run('resume/update'))
+      if($this->form_validation->run('resume/updateBySession'))
       {
         $b = $this->resumemodel->update()->row();
         if($b)
@@ -71,32 +80,19 @@ class Resume extends CI_Controller
       showView('resumes/update', $a);
     }
   }
-	public final function update($id = null)
+	public final function update()
   {
-    $o = $this->resumemodel->read($id)->row();
-    $a = array('resume' => $o);
     if($this->input->post())
     {
       if($this->form_validation->run('resume/update'))
       {
-        $b = $this->resumemodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('resume/read/' . $o->id));
-        }
-        else
-        {
-          show_error('Error updating resume.');
-        }
+        $this->resumemodel->update();
+        showJsonView(array('success' => true));
       }
       else
       {
-        showView('resumes/update', $a);
+        showJsonView(array('success' => false, 'message' => validation_errors()));
       }
-    }
-    else
-    {
-      showView('resumes/update', $a);
     }
   }
 	public final function delete($id)

@@ -1,19 +1,16 @@
 <section id="search">
     <?php echo form_open('main/search'); ?>
-    <div class="large-6 columns">
-      <?php echo form_dropdown('country', getCountries()); ?>
-    </div>
-    <div class="large-6 columns">
-      <div class="row collapse">
-        <div class="small-10 columns">
-          <input type="text" name="keywords" placeholder="Keywords">
+      <div class="row">
+        <div class="small-10 medium-10 large-11 columns">
+          <input type="text" 
+                name="keywords" 
+                placeholder="Search internships e.g. Information Technology">
         </div>
-        <div class="small-2 columns">
-          <a href="#" class="button postfix">
+        <div class="small-2 medium-2 large-1 columns">
+          <button class="tiny radius">
             <i class="fa fa-search"></i>
-          </a>
+          </button>
         </div>
       </div>
-    </div>
     </form>
 </section>

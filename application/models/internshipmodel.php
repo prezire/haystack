@@ -26,11 +26,12 @@
 		}
 		public final function read($id)
 		{
-      return $this->db->get_where
-      (
-        'internships', 
-        array('id' => $id)
-      );
+      $this->db->select('*, i.id internship_id, i.id employer_id');
+      $this->db->from('internships i');
+      $this->db->join('employers e', 'e.id = i.employer_id');
+      $this->db->join('users u', 'e.user_id = u.id');
+      $this->db->where('i.id', $id);
+      return $this->db->get();
 		}
     public final function readByIndustry($industry)
 		{

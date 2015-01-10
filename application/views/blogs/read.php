@@ -2,8 +2,8 @@
       <div class="row">
         <h5 class="large-12 columns">
           <span class="header">
-            <?php echo $blog->name; ?>
-          </span> - <?php echo $blog->publish_state; ?>
+            <strong><?php echo $blog->name; ?></strong>
+          </span> (<?php echo toHumanReadableDate($blog->publish_state); ?>)
         </h5>
       </div>
           

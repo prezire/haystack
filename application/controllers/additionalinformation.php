@@ -41,32 +41,21 @@ class AdditionalInformation extends CI_Controller
 	{
 		showView('additional_informations/read', array('additionalInformation' => $this->additionalinformationmodel->read($id)->row()));
 	}
-	public final function update($id = null)
+	public final function update()
   {
     $o = $this->additionalinformationmodel->read($id)->row();
     $a = array('additionalInformation' => $o);
     if($this->input->post())
     {
-      if($this->form_validation->run())
+      if($this->form_validation->run('additionalinformation/update'))
       {
-        $b = $this->additionalinformationmodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('additional_information/read/' . $o->id));
-        }
-        else
-        {
-          show_error('Error updating additional_information.');
-        }
+        $this->additionalinformationmodel->update();
+        showJsonView(array('success' => true));
       }
       else
       {
-        showView('additional_informations/update', $a);
+        showJsonView(array('success' => false, 'message' => validation_errors()));
       }
-    }
-    else
-    {
-      showView('additional_informations/update', $a);
     }
   }
 	public final function delete($id)

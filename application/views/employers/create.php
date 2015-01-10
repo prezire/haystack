@@ -1,14 +1,19 @@
 <div id="employer" class="create row">
-    <?php 
-    echo validation_errors();
-    echo form_open_multipart('employer/create'); 
-    ?>          
+    <?php echo form_open_multipart('employer/create'); ?>          
       <input type="hidden" name="role" value="employer" />
       <?php echo $this->load->view('commons/partials/users/create', null, true); ?>      
       
       <div class="row">
-        <a href="<?php echo site_url('applicant'); ?>" class="button alert small radius">Cancel</a>
-        <button class="small radius">Create</button>
+        <div class="large-12 columns">
+          Organization Name: 
+          <input type="text" name="organization_name" value="<?php echo set_value('organization_name'); ?>" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <button class="small radius">Register</button>
+        </div>
       </div>
   </form>
 </div>

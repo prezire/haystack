@@ -11,10 +11,13 @@
     public final function search()
     {
       $i = $this->input;
-      //search fields in users, applicants, employers, subscribers, internships.
       $kwds = $i->post('keywords');
-      $ctry = $i->post('country');
-      //$s = "SELECT * FROM searchengine WHERE pagecontent LIKE '%$_GET[term]%'";
+      /*http://stackoverflow.com/questions/394041/mysql-how-to-search-multiple-tables-for-a-string-existing-in-any-column
+      union all
+      select * from table2 where match(col1, col2) against ('some string')
+      union all
+      select * from table3 where match(col1, col2, col3, col4) against ('some string')*/
+      $s = "SELECT * FROM internships WHERE MATCH (name, industry, description) AGAINST ('$kwds' IN BOOLEAN MODE)";
       return $this->db->query($s);
     }
 		public final function create()

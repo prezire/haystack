@@ -41,32 +41,19 @@ class Education extends CI_Controller
 	{
 		showView('educations/read', array('education' => $this->educationmodel->read($id)->row()));
 	}
-	public final function update($id = null)
+	public final function update()
   {
-    $o = $this->educationmodel->read($id)->row();
-    $a = array('education' => $o);
     if($this->input->post())
     {
-      if($this->form_validation->run())
+      if($this->form_validation->run('education/update'))
       {
-        $b = $this->educationmodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('education/read/' . $o->id));
-        }
-        else
-        {
-          show_error('Error updating education.');
-        }
+        $this->educationmodel->update();
+        showJsonView(array('success' => true));
       }
       else
       {
-        showView('educations/update', $a);
+        showJsonView(array('success' => false, 'message' => validation_errors()));
       }
-    }
-    else
-    {
-      showView('educations/update', $a);
     }
   }
 	public final function delete($id)

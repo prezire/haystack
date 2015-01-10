@@ -13,6 +13,11 @@
         <div class="large-6 columns">Name: <input type="text" name="name" value="<?php echo set_value('name', $internship->name); ?>" /></div>
         <div class="large-6 columns">Salary: <input type="text" name="salary" value="<?php echo set_value('salary', $internship->salary); ?>" /></div>
       </div>
+
+      <div class="row">
+        <div class="large-6 columns">Address: <input type="text" name="address" value="<?php echo set_value('address', $internship->address); ?>" /></div>
+        <div class="small-6 medium-6 large-6 columns">Country: <?php echo form_dropdown('country', getCountries(), set_value('country', $internship->country)); ?></div>
+      </div>
       
       <div class="row">      
         <div class="large-12 columns">Description: <textarea name="description"><?php echo set_value('description', $internship->description); ?></textarea></div>

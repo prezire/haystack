@@ -11,17 +11,6 @@ class User extends CI_Controller
     $o = $this->usermodel->index()->result();
     showView('users/index', array('users' => $o));
   }
-  public final function enable($state = 1, $enableToken)
-  {
-    $i = $this->usermodel->enable($state, $enableToken);
-    $b = $i > 0;
-    if($b){
-      redirect(site_url('main/activationSuccess'));
-    }
-    else{
-      echo 'Activation URL not found.';
-    }
-  }
   public final function create()
   {
     if($this->input->post())

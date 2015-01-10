@@ -31,17 +31,24 @@
 		public final function update()
 		{
 			$i = $this->input;
-			$id = $i->post('id');
-			$this->db->where('id', $id);
-			$this->db->update
-      (
-        'certifications', 
-        getPostValuePair()
-      );
+			$resumeId = $i->post('resume_id');
+			//Remove all items to refresh the list.
+			$this->db->where('resume_id', $resumeId);
+			$this->db->delete('certifications');
+			//
+			$names = $i->post('name');
+			foreach($names as $n){
+				$a = array
+				(
+					'resume_id' => $resumeId,
+					'name' => $n
+				);
+				$this->db->insert('certifications', $a);
+			}
 		}
 		public final function delete($id)
-    {
-      $this->db->where('certification.id', $id);
-			return $this->db->delete();
-    }
+	    {
+	      $this->db->where('certification.id', $id);
+				return $this->db->delete();
+	    }
 	}

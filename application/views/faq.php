@@ -24,7 +24,7 @@
         I need my colleagues, university faculty members and such to give me comments.
       </h5>
       <p>
-        Ask them to register as a <a href="<?php echo site_url('main/register#subscriber'); ?>">Subscriber</a>
+        Ask them to register as a <a href="<?php echo site_url('auth/register#subscriber'); ?>">Subscriber</a>
         for them to give you comments and feedbacks about your performance.
       </p>
       

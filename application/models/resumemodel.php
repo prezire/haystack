@@ -54,25 +54,29 @@
       $this->db->join('users u', 'u.id = a.user_id');
       $this->db->where('r.id', $id);
       $resume = $this->db->get()->row();
+      //
+      $this->db->order_by('from', 'ASC');
       $works = $this->db->get_where('work_histories', array('resume_id' => $id))->result();
+      $this->db->order_by('from', 'ASC');
       $eds = $this->db->get_where('educations', array('resume_id' => $id))->result();
+      //
       $skills = $this->db->get_where('skills', array('resume_id' => $id))->result();
       $certs = $this->db->get_where('certifications', array('resume_id' => $id))->result();
       $infos = $this->db->get_where('additional_informations', array('resume_id' => $id))->row();
       $a = array
       (
         'resume' => $resume,
-        'work_histories' => $works,
+        'workHistories' => $works,
         'educations' => $eds,
         'skills' => $skills,
         'certifications' => $certs,
-        'additional_informations' => $infos
+        'additionalInformations' => $infos
       );
       return $a;
 		}
 		public final function update()
 		{
-			$i = $this->input;
+      $i = $this->input;
 			$id = $i->post('id');
 			$this->db->where('id', $id);
 			$this->db->update

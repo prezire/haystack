@@ -1,6 +1,6 @@
 <div id="user" class="update row">
      <div class="row">
-      <h4>Update User</h4>
+      <h4>Update Profile (<?php echo getRoleName(); ?>)</h4>
       <?php 
         if($this->session->flashdata('update') == 'success') { ?>
         <div class="alert-box success radius">
@@ -13,16 +13,27 @@
         echo form_open_multipart('user/update'); 
     ?>
       <input type="hidden" name="id" value="<?php echo set_value('id', $user->id); ?>" />      
+      
       <div class="row">
-        <?php 
-          $img = base_url('public/uploads') . '/' . set_value('image_path', $user->image_path);
-        ?>
-        <div class="avatar">
-          <img src="<?php echo $img; ?>" />
+        <div class="large-6 medium-6 small-6 columns">
+          <?php 
+            $img = base_url('public/uploads') . 
+                    '/' . 
+                    set_value('image_path', $user->image_path);
+          ?>
+          <div class="avatar"><img src="<?php echo $img; ?>" /></div>
+          <br />
+          <input type="file" name="image_path" />
         </div>
-        <br />
-        <div class="large-12 columns"><input type="file" name="image_path" /></div>
+        <?php if(getRoleName() == 'Applicant'){ ?>
+        <div class="large-6 medium-6 small-6 columns">
+          <a href="<?php echo site_url('resume/updateBySession'); ?>" class="button tiny radius">
+            View resume
+          </a>
+        </div>
+        <?php } ?>
       </div>
+
       <div class="row">
           <?php 
             $t = set_value('title', $user->title); 
@@ -59,8 +70,9 @@
       <!-- TODO: Contact Me form. -->
       
       <div class="row">
-        <a href="<?php echo site_url('user/read/'  . $user->id); ?>" class="button alert small radius">Cancel</a>
-        <button class="small radius">Update</button>
+        <div class="large-12 columns">
+          <button class="small radius">Update</button>
+        </div>
       </div>
   </form>
 </div>

@@ -1,6 +1,33 @@
 <?php
 $config = array
 (
+	'contact' => array
+	(
+		array
+		(
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|is_unique[users.email]|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full_name',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'topic',
+			'label' => 'Topic',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'message',
+			'label' => 'Message',
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
 	'user/create' => array
 	(
 		array
@@ -10,7 +37,7 @@ $config = array
 			'rules' => ''
 		)
 	),
-  'user/update' => array
+  	'user/update' => array
 	(
 		array
 		(
@@ -19,7 +46,118 @@ $config = array
 			'rules' => ''
 		)
 	),
-  'applicant/create' => array
+  	'applicant/create' => array
+	(
+		array
+		(
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|is_unique[users.email]|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full Name',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'current_position_title',
+			'label' => 'Current Position Title',
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
+  	'applicant/update' => array
+	(
+		array
+		(
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full Name',
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
+  	'employer/create' => array
+	(
+		array
+		(
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|is_unique[users.email]|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full Name',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'organization_name',
+			'label' => 'Organization Name',
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
+  	'employer/update' => array
+	(
+		array
+		(
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full Name',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'organization_name',
+			'label' => 'Organization Name',
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
+	'workhistory/update' => array
+	(
+		array
+		(
+			'field' => 'position',
+			'label' => 'Position',
+			'rules' => ''
+		)
+	),
+  	'subscriber/create' => array
 	(
 		array
 		(
@@ -28,7 +166,7 @@ $config = array
 			'rules' => ''
 		)
 	),
-  'applicant/update' => array
+  	'subscriber/update' => array
 	(
 		array
 		(
@@ -37,64 +175,73 @@ $config = array
 			'rules' => ''
 		)
 	),
-  'employer/create' => array
+	'internship/create' => array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
+			'field' => 'name',
+			'label' => 'Name',
 			'rules' => ''
 		)
 	),
-  'employer/update' => array
+  	'internship/update' => array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
+			'field' => 'name',
+			'label' => 'Name',
 			'rules' => ''
 		)
 	),
-  'subscriber/create' => array
+  	'resume/update' => array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
+			'field' => 'headline',
+			'label' => 'Headline',
 			'rules' => ''
 		)
 	),
-  'subscriber/update' => array
+	'additionalinformation/update' => array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
+			'field' => 'information',
+			'label' => 'Information',
 			'rules' => ''
 		)
 	),
-  'resume/update' => array
+	'education/update' => array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
+			'field' => 'degree',
+			'label' => 'Degree',
 			'rules' => ''
 		)
 	),
-  'auth' => array
+  	'auth/login' => array
     (
       array
       (
-        'field' => 'username',
-        'label' => 'Username',
-        'rules' => 'required'
+        'field' => 'email',
+        'label' => 'Email',
+        'rules' => 'required|valid_email|xss_clean|trim'
       ),
       array
       (
         'field' => 'password',
         'label' => 'Password',
-        'rules' => 'required'
+        'rules' => 'required|xss_clean|trim'
+      )
+    ),
+    'auth/forgotPassword' => array
+    (
+      array
+      (
+        'field' => 'email',
+        'label' => 'Email',
+        'rules' => 'required|valid_email|xss_clean|trim'
       )
     )
 );

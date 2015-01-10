@@ -15,7 +15,7 @@ class Internship extends CI_Controller
   {
     if($this->input->post())
     {
-      //if($this->form_validation->run('internship/create')){
+      if($this->form_validation->run('internship/create')){
         $o = $this->internshipmodel->create()->row();
         if($o->id)
         {
@@ -25,11 +25,11 @@ class Internship extends CI_Controller
         {
           show_error('Error creating internship.');
         }
-      /*}
+      }
       else
       {
         showView('internships/create');
-      }*/
+      }
     }
     else
     {
@@ -84,4 +84,18 @@ class Internship extends CI_Controller
   {
     showJsonView(array('internship' => $this->internship_model->delete($id)->row()));
   }
+  //Bookmarks.
+  public final function bookmarks()
+  {
+    //Check session.
+  }
+  public final function createBookmark(){}
+  public final function deleteBookmark($id){}
+  //Alerts.
+  public final function alerts()
+  {
+    //Check session.
+  }
+  public final function createAlert(){}
+  public final function deleteAlert($id){}
 }

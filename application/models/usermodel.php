@@ -10,15 +10,23 @@
 			$this->db->from('users u');
 			return $this->db->get();
 		}
-    public final function generateToken($id)
-    {
-      return md5($id . rand(0, 999) . time());
-    }
     public final function enable($state, $enableToken)
     {
       $this->db->where('enable_token', $enableToken);
-      $this->db->update('users')->row()->id;
+      $this->db->update('users', array('enabled' => $state));
       return $this->db->affected_rows();
+    }
+    public final function forgotPassword()
+    {
+      $uId = $this->readByEmail($this->input->post('email'))->row();
+      if($uId > 0)
+      {
+        $tok = generateToken($uId);
+        $this->db->where('id', $id);
+        $this->db->update('users', array('password_reset_token', $tok));
+        return true;
+      }
+      return false;
     }
 		public final function create()
 		{
@@ -43,6 +51,14 @@
         array('id' => $id)
       );
 		}
+    public final function readByEmail($email)
+    {
+      return $this->db->get_where
+      (
+        'users', 
+        array('email' => $email)
+      );
+    }
     private final function uploadAvatar($userId)
     {
       //TODO: Query and remove prev image file.

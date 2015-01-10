@@ -13,6 +13,10 @@
     }
     return $list;
   }
+  function generateToken($key)
+  {
+    return md5($key . rand(0, 999) . time());
+  }
   function getLoggedUser()
   {
     $CI = get_instance();
@@ -27,6 +31,16 @@
     $CI = get_instance();
     $CI->load->model('rolemodel');
     return $CI->rolemodel->read($id);
+  }
+  function getRoleName()
+  {
+    $usr = getLoggedUser();
+    if(isset($usr->role_id))
+    {
+      $roleName = getRoleById($usr->role_id)->row()->name;
+      return $roleName;
+    }
+    else return '';
   }
   function isPermitted($permissionName)
   {
@@ -52,14 +66,21 @@
     $bcc = null
   )
   {
-    //TODO: Config.
     $CI = get_instance();
+    $CI->load->config('custom_configs');
+    $conf = $CI->config->item('email');
+    //
+    $CI->email->initialize($conf['server']);
+    $CI->email->set_newline("\r\n");
     $CI->email->from($from);
     $CI->email->to($to);
     $CI->email->bcc($cc);
     $CI->email->subject($subject);
     $CI->email->message($message);
-    $CI->email->send();
+    if(!$CI->email->send())
+    {
+      show_error($CI->email->print_debugger());
+    }
   }
   function upload($fieldName)
   {

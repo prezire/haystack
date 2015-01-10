@@ -22,26 +22,45 @@
 		}
 		public final function read($id)
 		{
-      return $this->db->get_where
-      (
-        'work_histories', 
-        array('id' => $id)
-      );
+	      return $this->db->get_where
+	      (
+	        'work_histories', 
+	        array('id' => $id)
+	      );
 		}
 		public final function update()
 		{
 			$i = $this->input;
-			$id = $i->post('id');
-			$this->db->where('id', $id);
-			$this->db->update
-      (
-        'work_histories', 
-        getPostValuePair()
-      );
+			$resumeId = $i->post('resume_id');
+			//Remove all items to refresh the list.
+			$this->db->where('resume_id', $resumeId);
+			$this->db->delete('work_histories');
+			$tmpPos = $i->post('position');
+			for($a = 0; $a < count($tmpPos); $a++)
+			{
+
+				$pos = $tmpPos;
+				$companies = $i->post('company');
+				$froms = $i->post('from');
+				$tos = $i->post('to');
+				$locs = $i->post('location');
+				$summaries = $i->post('summary');
+				$l = array
+				(
+					'resume_id' => $resumeId, 
+					'position' => $pos[$a],
+					'company' => $companies[$a],
+					'from' => $froms[$a],
+					'to' => $tos[$a],
+					'location' => $locs[$a],
+					'summary' => $summaries[$a]
+				);
+				$this->db->insert('work_histories', $l);
+			}
 		}
 		public final function delete($id)
-    {
-      $this->db->where('work_history.id', $id);
-			return $this->db->delete();
-    }
+	    {
+	      $this->db->where('work_history.id', $id);
+				return $this->db->delete();
+	    }
 	}

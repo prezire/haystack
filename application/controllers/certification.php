@@ -41,32 +41,13 @@ class Certification extends CI_Controller
 	{
 		showView('certifications/read', array('certification' => $this->certificationmodel->read($id)->row()));
 	}
-	public final function update($id = null)
+	public final function update()
   {
-    $o = $this->certificationmodel->read($id)->row();
-    $a = array('certification' => $o);
     if($this->input->post())
     {
-      if($this->form_validation->run())
-      {
-        $b = $this->certificationmodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('certification/read/' . $o->id));
-        }
-        else
-        {
-          show_error('Error updating certification.');
-        }
-      }
-      else
-      {
-        showView('certifications/update', $a);
-      }
-    }
-    else
-    {
-      showView('certifications/update', $a);
+      //Validation not needed.
+      $this->certificationmodel->update();
+      showJsonView(array('success' => true));
     }
   }
 	public final function delete($id)

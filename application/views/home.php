@@ -3,69 +3,54 @@
   <?php echo $this->load->view('commons/partials/search', null, true); ?>
   
   
-  <div class="row">
-    <div class="listing panel">
-      <div class="row">
-        <div class="large-2 columns">
-          <a href="#" class="button small radius btnShowListing">
-            <i class="fa fa-list"></i>
-          </a>
-        </div>
-      </div>
-      <br />
-      <div class="row expandable">
-        <div class="large-12 columns">
-          <dl class="tabs" data-tab>
-            <dd class="active"><a href="#applicantsSummary">Applicants</a></dd>
-            <dd><a href="#internshipsSummary">Internships</a></dd>
-          </dl>
-          <div class="tabs-content">
+  
+  <div class="row expandable">
+    <div class="large-12 columns">
+      <dl class="tabs" data-tab>
+        <dd class="active"><a href="#applicantsSummary">Applicant Job Titles</a></dd>
+        <dd><a href="#internshipsSummary">Internship Industries</a></dd>
+      </dl>
+      <div class="tabs-content">
+        <?php 
+            $applsSummary = $groupedSummary['applicants'];
+            $intsSummary = $groupedSummary['internships'];
+        ?>
+        <div class="content active" id="applicantsSummary">
+   
+          <ul>
             <?php 
-                $applsSummary = $groupedSummary['applicants'];
-                $intsSummary = $groupedSummary['internships'];
+              foreach($applsSummary as $a)
+              {
+                $jt = $a->current_position_title;
             ?>
-            <div class="content active" id="applicantsSummary">
-              <div class="row">
-                <div class="large-12 columns">Job Titles</div>
-              </div>
-              <ul>
-                <?php 
-                  foreach($applsSummary as $a)
-                  {
-                    $jt = $a->job_title;
-                ?>
-                <li>
-                  <a href="<?php echo site_url('applicant/readByJobTitle/' . $jt); ?>">
-                    <?php echo $jt . ' (' . $a->count . ')'; ?>
-                  </a>
-                </li>
-                <?php
-                  }
-                ?>
-              </ul>
-            </div>
-            <div class="content" id="internshipsSummary">
-             <div class="row">
-                <div class="large-12 columns">Industries</div>
-              </div>
-              <ul>
-                <?php 
-                  foreach($intsSummary as $i)
-                  {
-                    $ind = $i->industry;
-                ?>
-                <li>
-                  <?php $encodedUrl = str_replace('/', 'haystackescapedslash', $ind); ?>
-                  <a href="<?php echo site_url('internship/readByIndustry/' . $encodedUrl); ?>">
-                    <?php echo $ind . ' (' . $i->count . ')'; ?>
-                  </a>
-                </li>
-                <?php 
-                  }
-                ?>
-              </ul>
-            </div>
-          </div>
+            <li>
+              <a href="<?php echo site_url('applicant/readByJobTitle/' . $jt); ?>">
+                <?php echo $jt . ' (' . $a->count . ')'; ?>
+              </a>
+            </li>
+            <?php
+              }
+            ?>
+          </ul>
+        </div>
+        <div class="content" id="internshipsSummary">
+        
+          <ul>
+            <?php 
+              foreach($intsSummary as $i)
+              {
+                $ind = $i->industry;
+            ?>
+            <li>
+              <?php $encodedUrl = str_replace('/', 'haystackescapedslash', $ind); ?>
+              <a href="<?php echo site_url('internship/readByIndustry/' . $encodedUrl); ?>">
+                <?php echo $ind . ' (' . $i->count . ')'; ?>
+              </a>
+            </li>
+            <?php 
+              }
+            ?>
+          </ul>
         </div>
       </div>
     </div>
@@ -89,7 +74,7 @@
           <div class="work_title">
             <h1><?php echo $a->full_name?></h1>
             <div>
-              <?php echo $a->job_title?>
+              <?php echo $a->current_position_title?>
             </div>
           </div>
         </div>

@@ -15,17 +15,29 @@
 			$i = $this->input;
 			if($i->post())
 			{
-        $a = getPostValuePair(array('role'));
-        $this->load->model('rolemodel');
-        $a['role_id'] = $this->rolemodel->readByName($i->post('role'))->row()->id;
-        $this->db->insert('users', $a);
-        $uId = $this->db->insert_id();
-        //upload('avatar');
-        //
+		        $a = getPostValuePair
+		        (
+		        	array
+		        	(
+		        		'role', 
+		        		'organization_name'
+		        	)
+		        );
+		        $this->load->model('rolemodel');
+		        $a['role_id'] = $this->rolemodel->readByName($i->post('role'))->row()->id;
+		        $a['enable_token'] = md5(date('Ymd') . rand(0, 999) . time());
+		        $this->db->insert('users', $a);
+		        $uId = $this->db->insert_id();
+		        //upload('avatar');
+		        //
 				$this->db->insert
 				(
 					'employers', 
-					array('user_id' => $uId)
+					array
+					(
+						'user_id' => $uId,
+						'organization_name' => $i->post('organization_name')
+					)
 				);
 				$this->load->model('usermodel');
 				return $this->usermodel->read($uId);

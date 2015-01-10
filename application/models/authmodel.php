@@ -13,4 +13,15 @@
       $a = array('email' => $email, 'password' => $pwd);
       return $this->db->get_where('users', $a);
     }
+    public final function fbLogin()
+    {
+      //TODO: Read from DB. If exists, create session.
+      //Else, create new user.
+      /*
+        will receive the following info: your public profile, 
+        friend list, email address, birthday, work history, 
+        education history, current city, website and 
+        personal description.
+      */ 
+    }
   }

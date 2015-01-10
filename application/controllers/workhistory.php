@@ -41,32 +41,19 @@ class WorkHistory extends CI_Controller
 	{
 		showView('work_histories/read', array('workHistory' => $this->workhistorymodel->read($id)->row()));
 	}
-	public final function update($id = null)
+	public final function update()
   {
-    $o = $this->workhistorymodel->read($id)->row();
-    $a = array('workHistory' => $o);
     if($this->input->post())
     {
-      if($this->form_validation->run())
+      if($this->form_validation->run('workhistory/update'))
       {
-        $b = $this->workhistorymodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('work_history/read/' . $o->id));
-        }
-        else
-        {
-          show_error('Error updating work_history.');
-        }
+        $this->workhistorymodel->update();
+        showJsonView(array('success' => true));
       }
       else
       {
-        showView('work_histories/update', $a);
+        showJsonView(array('success' => false, 'message' => validation_errors()));
       }
-    }
-    else
-    {
-      showView('work_histories/update', $a);
     }
   }
 	public final function delete($id)

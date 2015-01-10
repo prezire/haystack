@@ -41,32 +41,13 @@ class Skill extends CI_Controller
 	{
 		showView('skills/read', array('skill' => $this->skillmodel->read($id)->row()));
 	}
-	public final function update($id = null)
+	public final function update()
   {
-    $o = $this->skillmodel->read($id)->row();
-    $a = array('skill' => $o);
     if($this->input->post())
     {
-      if($this->form_validation->run())
-      {
-        $b = $this->skillmodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('skill/read/' . $o->id));
-        }
-        else
-        {
-          show_error('Error updating skill.');
-        }
-      }
-      else
-      {
-        showView('skills/update', $a);
-      }
-    }
-    else
-    {
-      showView('skills/update', $a);
+      //Validation not needed.
+      $this->skillmodel->update();
+      showJsonView(array('success' => true));
     }
   }
 	public final function delete($id)

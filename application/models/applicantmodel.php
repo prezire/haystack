@@ -22,13 +22,14 @@
           (
             'role',
             'expected_salary',
-            'internship_position',
+            'desired_internship_position',
             'preferred_country',
-            'job_title'
+            'current_position_title'
           )
         );
         $this->load->model('rolemodel');
         $a['role_id'] = $this->rolemodel->readByName($i->post('role'))->row()->id;
+        $a['enable_token'] = md5(date('Ymd') . rand(0, 999) . time());
         $this->db->insert('users', $a);
         $uId = $this->db->insert_id();
         //upload('image_path');
@@ -41,11 +42,15 @@
           (
             'user_id' => $uId,
             'expected_salary' => $i->post('expected_salary'),
-            'internship_position' => $i->post('internship_position'),
+            'desired_internship_position' => $i->post('desired_internship_position'),
             'preferred_country' => $i->post('preferred_country'),
-            'job_title' => $i->post('job_title')
+            'current_position_title' => $i->post('current_position_title')
           )
 				);
+        //Create resume.
+        $applId = $this->db->insert_id();
+        $this->db->insert('resumes', array('applicant_id' => $applId));
+        //
         $this->load->model('usermodel');
 				return $this->usermodel->read($uId);
 			}
@@ -71,14 +76,14 @@
       return $this->db->get_where
       (
         'applicants', 
-        array('job_title' => $jobTitle)
+        array('current_position_title' => $jobTitle)
       );
     }
     public final function readGroupedSummary()
     {
-      $this->db->select("job_title, count(id) as count");
+      $this->db->select("current_position_title, count(id) as count");
 			$this->db->from('applicants');
-      $this->db->group_by('job_title');
+      $this->db->group_by('current_position_title');
 			return $this->db->get();
     }
 		public final function update()

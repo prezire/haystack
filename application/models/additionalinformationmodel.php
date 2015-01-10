@@ -31,13 +31,13 @@
 		public final function update()
 		{
 			$i = $this->input;
-			$id = $i->post('id');
-			$this->db->where('id', $id);
+			$id = $i->post('resume_id');
+			$this->db->where('resume_id', $id);
 			$this->db->update
-      (
-        'additional_informations', 
-        getPostValuePair()
-      );
+		      (
+		        'additional_informations', 
+		        getPostValuePair(array('resume_id'))
+		      );
 		}
 		public final function delete($id)
     {

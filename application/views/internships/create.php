@@ -11,6 +11,11 @@
         <div class="large-6 columns">Name: <input type="text" name="name" /></div>
         <div class="large-6 columns">Salary: <input type="text" name="salary" /></div>
       </div>
+
+      <div class="row">
+        <div class="large-6 columns">Address: <input type="text" name="address" /></div>
+        <div class="small-6 medium-6 large-6 columns">Country: <?php echo form_dropdown('country', getCountries()); ?></div>
+      </div>
       
       <div class="row">
         <div class="large-12 columns">Description: <textarea name="description" placeholder="e.g. Job description and job requirements"></textarea></div>
