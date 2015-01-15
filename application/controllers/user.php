@@ -4,6 +4,10 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array('update', 'delete')
+    );
     $this->load->model('usermodel');
 	}
   public final function index()
@@ -44,7 +48,24 @@ class User extends CI_Controller
 	public final function update($id = null)
   {
     $o = $this->usermodel->read($id)->row();
-    $a = array('user' => $o);
+    $id = getLoggedUser()->id;
+    switch(getRoleName())
+    {
+      case 'Employer':
+        $this->load->model('employermodel');
+        $id = $this->employermodel->readByUserId($id)->row()->id;
+      break;
+      case 'Applicant':
+        $this->load->model('applicantmodel');
+        $id = $this->applicantmodel->readByUserId($id)->row()->id;
+      break;
+    }
+    //
+    $a = array
+    (
+      'user' => $o,
+      'id' => $id
+    );
     if($this->input->post())
     {
       //if($this->form_validation->run('user/update')){

@@ -4,6 +4,16 @@ class Internship extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array
+      (
+        'create', 
+        'readMyPosts', 
+        'update', 
+        'delete'
+      )
+    );
     $this->load->model('internshipmodel');
 	}
   public final function index()
@@ -15,11 +25,12 @@ class Internship extends CI_Controller
   {
     if($this->input->post())
     {
-      if($this->form_validation->run('internship/create')){
+      if($this->form_validation->run('internship/create'))
+      {
         $o = $this->internshipmodel->create()->row();
-        if($o->id)
+        if($o->internship_id)
         {
-          redirect(site_url('internship/update/' . $o->id));
+          redirect(site_url('internship/update/' . $o->internship_id));
         }
         else
         {
@@ -38,7 +49,15 @@ class Internship extends CI_Controller
   }
 	public final function read($id)
 	{
-		showView('internships/read', array('internship' => $this->internshipmodel->read($id)->row()));
+    $this->load->model('internshipapplicationmodel');
+    $ia = $this->internshipapplicationmodel->readBySpecificId($id, 'internship');
+    $bHasApplied = $ia->num_rows() > 0;
+    $a = array
+    (
+      'internship' => $this->internshipmodel->read($id)->row(),
+      'hasApplied' => $bHasApplied
+    );
+		showView('internships/read', $a);
 	}
   public final function readByIndustry($industry)
 	{
@@ -59,7 +78,8 @@ class Internship extends CI_Controller
     $a = array('internship' => $o);
     if($this->input->post())
     {
-      //if($this->form_validation->run('internship/update')){
+      if($this->form_validation->run('internship/update'))
+      {
         $b = $this->internshipmodel->update()->row();
         if($b)
         {
@@ -69,11 +89,11 @@ class Internship extends CI_Controller
         {
           show_error('Error updating internship.');
         }
-      /*}
+      }
       else
       {
         showView('internships/update', $a);
-      }*/
+      }
     }
     else
     {
@@ -82,7 +102,8 @@ class Internship extends CI_Controller
   }
 	public final function delete($id)
   {
-    showJsonView(array('internship' => $this->internship_model->delete($id)->row()));
+    $this->internshipmodel->delete($id);
+    showJsonView(array('success' => true, 'id' => $id));
   }
   //Bookmarks.
   public final function bookmarks()

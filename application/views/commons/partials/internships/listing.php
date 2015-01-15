@@ -1,5 +1,5 @@
 <?php $i = $internship; ?>
-<div class="row panel radius">
+<div class="row panel radius" id="<?php echo $i->id; ?>">
   <div class="small-12 medium-12 large-8 columns primary">
 
     <?php if(getRoleName() == 'Employer'){ ?>

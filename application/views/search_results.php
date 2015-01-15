@@ -4,7 +4,7 @@
 
 	<div class="row">
 	  <div class="small-12 medium-12 large-12 columns">
-	  	Results for <?php echo $this->input->post('keywords'); ?>
+	  	Results for "<i><?php echo $this->input->post('keywords'); ?></i>"
 		<br /><br />
 	  </div>
 	</div>

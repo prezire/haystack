@@ -4,6 +4,10 @@ class Employer extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array('update', 'delete')
+    );
     $this->load->model('employermodel');
 	}
   public final function index()

@@ -72,7 +72,7 @@
 		}
 		public final function delete($id)
     {
-      $this->db->where('internship.id', $id);
-			return $this->db->delete();
+      $this->db->where('id', $id);
+			$this->db->delete('internships');
     }
 	}

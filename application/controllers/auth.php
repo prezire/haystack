@@ -5,6 +5,10 @@
     public function __construct()
     {
       parent::__construct();
+      validateLoginSession
+      (
+        array('enable', 'forgotPassword')
+      );
     }
     public final function enable($state = 1, $enableToken)
     {

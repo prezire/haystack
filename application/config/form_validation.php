@@ -243,5 +243,23 @@ $config = array
         'label' => 'Email',
         'rules' => 'required|valid_email|xss_clean|trim'
       )
+    ),
+    'comment/create' => array
+    (
+      array
+      (
+        'field' => 'comment',
+        'label' => 'Comment',
+        'rules' => 'required|xss_clean|trim'
+      )
+    ),
+    'comment/update' => array
+    (
+      array
+      (
+        'field' => 'comment',
+        'label' => 'Comment',
+        'rules' => 'required|xss_clean|trim'
+      )
     )
 );

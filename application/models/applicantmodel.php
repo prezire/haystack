@@ -1,4 +1,5 @@
-<?php	class ApplicantModel extends CI_Model
+<?php	
+  class ApplicantModel extends CI_Model
 	{
 		public function __construct()
 		{

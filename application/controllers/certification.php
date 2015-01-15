@@ -4,6 +4,10 @@ class Certification extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array('create', 'read', 'update', 'delete')
+    );
     $this->load->model('certificationmodel');
 	}
   public final function index()

@@ -17,7 +17,8 @@
       <div class="row">
         <div class="large-6 medium-6 small-6 columns">
           <?php 
-            $img = base_url('public/uploads') . 
+            $img = strlen($user->image_path) < 1 ? base_url('public/img/avatar.jpg') : 
+                    base_url('public/uploads') . 
                     '/' . 
                     set_value('image_path', $user->image_path);
           ?>
@@ -71,6 +72,12 @@
       
       <div class="row">
         <div class="large-12 columns">
+          <?php 
+            $r = getRoleName();
+            if($r != 'Employer'){
+          ?>
+            <a href="<?php echo site_url(strtolower($r) . '/read/' . $id); ?>" class="button small radius">Preview</a>
+          <?php } ?>
           <button class="small radius">Update</button>
         </div>
       </div>

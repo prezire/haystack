@@ -13,6 +13,54 @@
     }
     return $list;
   }
+  /*
+    Filters the currently executing method based on the listed 
+    methods names. Place this in the constructor.
+
+    @param  $methodNames  Array. The list of methods to filter.
+    @param  $type   String. Either include or exclude. Include checks
+    all methodsNames and re-routes the user if he's not logged in.
+    
+    Exclude is used when there are are a lot of methodNames 
+    and only a few methods that does need any checking. When
+    exclude is used all methods are checked except for the ones
+    listed in the methodNames.
+
+    Example:
+    1. validateLoginSession(array('index', 'create'))
+      - If method is index or create, this method checks for session.
+
+    2. validateLoginSession(array('read'), 'exclude')
+      - If method is index, create, update, this method checks
+      for session and redirects the user if he's not logged in.
+      If the executing method is read, this method does nothing.
+  */
+  function validateLoginSession($methodNames, $type = 'include')
+  {
+    $m = $this->router->fetch_method();
+    $b = in_array($m, $methodNames);
+    switch($type)
+    {
+      case 'include':
+        if($b)
+        {
+          if(!isLoggedIn())
+          {
+            redirect(site_url('auth/login'));
+          }
+        }
+      break;
+      case 'exclude':
+        if(!$b)
+        {
+          if(!isLoggedIn())
+          {
+            redirect(site_url('auth/login'));
+          }
+        }
+      break;
+    }
+  }
   function generateToken($key)
   {
     return md5($key . rand(0, 999) . time());

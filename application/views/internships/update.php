@@ -1,12 +1,14 @@
 <div id="internship" class="update row">
   <div class="row">
-    <h4>Update Internship</h4>
+    <div class="large-12 columns">
+      <h4>Update Internship</h4>
+    </div>
   </div>
-    <?php 
-    echo validation_errors();
-    echo form_open('internship/update'); 
+    <?php
+      echo validation_errors();
+      echo form_open('internship/update');
     ?>          
-      <input type="hidden" name="id" value="<?php echo set_value('id', $internship->id); ?>" />
+      <input type="hidden" name="id" value="<?php echo set_value('id', $internship->internship_id); ?>" />
       <input type="hidden" name="employer_id" value="<?php echo set_value('employer_id', $internship->employer_id); ?>" />         
           
       <div class="row">
@@ -40,8 +42,9 @@
        </div>
        
        <div class="row">
-        <a href="<?php echo site_url('internship/read/'  . $internship->id); ?>" class="button alert small radius">Cancel</a>
-        <button class="small radius">Update</button>
+        <div class="large-12 columns">
+          <button class="small radius">Update</button>
+        </div>
       </div>
   </form>
 </div>

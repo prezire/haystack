@@ -1,5 +1,4 @@
 <div id="resume" class="update row">
-  
   <div class="hidden">
     <div class="educationView">
       <?php echo $this->load->view('resumes/educations/create', null, true); ?>
@@ -14,17 +13,20 @@
       <div class="small-12 medium-12 large-12 columns"><h6>Resume</h6></div>
       <div class="small-12 medium-12 large-12 columns">
         <section class="options">
+          <a href="<?php echo site_url('resume/read/' . $resume->resume_id); ?>" class="button tiny radius preview">
+            <i class="fa fa-file-text-o"></i> Preview
+          </a>
           <a href="#" class="button tiny radius forward">
             <i class="fa fa-forward"></i> Forward
           </a>
-          <a href="#" class="button tiny radius download">
+          <!--a href="#" class="button tiny radius download">
             <i class="fa fa-angle-double-down"></i> Download
-          </a>
+          </a-->
           <div class="row panel recipients radius hide">
             <div class="small-8 medium-11 large-11 columns">
               <input type="text" class="recipients" placeholder="Comma-separated emails." /> 
             </div>
-            <div class="small-4 medium-11 large-1 columns">
+            <div class="small-4 medium-1 large-1 columns">
               <button class="tiny radius">Send</button>
             </div>
           </div>
@@ -49,11 +51,11 @@
         
 
         <div class="row">
-          <div class="small-10 medium-10 large-10 columns">
+          <div class="small-8 medium-10 large-10 columns">
             Full Name <input type="text" name="full_name" value="<?php echo set_value('full_name', $resume->full_name); ?>" disabled />      
-            Headline <input type="text" name="headline" value="<?php echo set_value('headline', $resume->headline); ?>" placeholder="Description about your career path." />
+            Headline <textarea name="headline" placeholder="Description about your career path."><?php echo set_value('headline', $resume->headline); ?></textarea>
           </div>
-          <div class="small-2 medium-2 large-2 columns">
+          <div class="small-4 medium-2 large-2 columns">
             <img class="right" src="<?php echo base_url('public/uploads/' . $resume->image_path); ?>" />
           </div>
         </div>

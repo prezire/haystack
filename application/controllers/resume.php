@@ -4,6 +4,16 @@ class Resume extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array
+      (
+        'create', 
+        'updateBySession', 
+        'update', 
+        'delete'
+      )
+    );
     $this->load->model('resumemodel');
 	}
   public final function index()
@@ -45,12 +55,12 @@ class Resume extends CI_Controller
   }
 	public final function read($id)
 	{
-		showView('resumes/read', array('resume' => $this->resumemodel->read($id)->row()));
+    $a = $this->resumemodel->readDetails($id);
+		showView('resumes/read', $a);
 	}
   public final function updateBySession()
   {
-    if(!isLoggedIn()) 
-      redirect(site_url('auth/login'));
+    if(!isLoggedIn()) redirect(site_url('auth/login'));
     //
     $uId = getLoggedUser()->id;
     $this->load->model('applicantmodel');

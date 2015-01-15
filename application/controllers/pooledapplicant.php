@@ -4,6 +4,10 @@ class PooledApplicant extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array('index', 'create', 'read', 'update', 'delete')
+    );
     $this->load->model('pooledapplicantmodel');
 	}
   public final function index()

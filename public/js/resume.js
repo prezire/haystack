@@ -61,29 +61,29 @@ function Resume()
   };
   this.setListeners = function(){
     var o = this;
-    $('.options .forward').click(function(e){
+    $('#resume.update .options .forward').click(function(e){
       e.preventDefault();
       $('.options .row.panel.recipients').slideToggle();
     });
-    $('li .close').live('click', function(e){
+    $('#resume.update li .close').live('click', function(e){
       $(this).parent().remove();
       e.preventDefault();
     });
-    $('.button.addWorkHistory').click(function(e){
+    $('#resume.update .button.addWorkHistory').click(function(e){
       o.addItem($('.hidden .workHistoryView'), $('.workHistories ul'));
       e.preventDefault();
     });
-    $('.button.addEducation').click(function(e){
+    $('#resume.update .button.addEducation').click(function(e){
       o.addItem($('.hidden .educationView'), $('.educations ul'));
       e.preventDefault();
     });
-    $('.button.addSkills, .button.addCertification').click(function(e){
+    $('#resume.update .button.addSkills, #resume.update .button.addCertification').click(function(e){
       var ul = $(this).parent().parent().parent().parent().find('form ul');
       o.addTextField(ul);
       e.preventDefault();
     });
     //
-    $('section i').click(function(e){
+    $('#resume.update section i').click(function(e){
       var t = $(this);
       var p = t.parent().parent().parent().find('form');
       p.slideToggle('slow');
@@ -102,38 +102,38 @@ function Resume()
       o.updateDatePickerIds(p.find('ul'));
       e.preventDefault();
     });
-    $('.resume button').click(function(e){
+    $('#resume.update .resume button').click(function(e){
       o.update('.resume', function(response){
         console.log(response);
       });
       e.preventDefault();
     });
-    $('.workHistories button').click(function(e){
+    $('#resume.update .workHistories button').click(function(e){
       o.update('.workHistories', function(response){
         console.log(response);
       });
       e.preventDefault();
     });
-    $('.educations button').click(function(e){
+    $('#resume.update .educations button').click(function(e){
       o.update('.educations', function(response){
         console.log(response);
       });
       e.preventDefault();
     });
-    $('.skills button').click(function(e){
+    $('#resume.update .skills button').click(function(e){
       o.update('.skills', function(response){
         console.log(response);
       });
       e.preventDefault();
     });
-    $('.certifications button').click(function(e){
+    $('#resume.update .certifications button').click(function(e){
       o.update('.certifications', function(response){
         console.log(response);
       });
       e.preventDefault();
     });
-    $('.additionalInformations button').click(function(e){
-      o.update('.additionalInformations', function(response){
+    $('#resume.update .additionalInformations button').click(function(e){
+      o.update('#resume.update .additionalInformations', function(response){
         console.log(response);
       });
       e.preventDefault();

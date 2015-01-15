@@ -35,8 +35,12 @@
         if(getLoggedUser()){ 
           if(getRoleName() == 'Employer'){
       ?>
-      <hr />
-      <h5>Send Message</h5>
+      <!--div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+          <h5>Send Message</h5>
+        </div>
+      </div>
+      
       <div class="row">
         <?php echo form_open('applicant/sendMessage'); ?>
           <div class="large-12 columns">
@@ -45,37 +49,53 @@
             <div><a href="#" class="button tiny radius btnSendMsg">Send</a></div>
           </div>
         </form>
-      </div>
-      
-      <?php if(isset($comments)){ ?>
-        <hr />
-        <h5><a name="comments">&nbsp;</a></h5>
-        <div class="row comments">
-          <?php foreach($comments as $c){ ?>
-            <div class="large-12 medium-12 small-12 columns comment">
-              <div>
-                <a href="#" class="commenter">
-                  <?php echo $c->commenter_full_name; ?>
-                </a>
-                <span class="comment"><?php echo $c->comment; ?></span>
-              </div>
-              <div class="dateTime"><?php echo $c->date_time; ?></div>
-            </div>
-          <?php } ?>
-        </div>
-        <div class="row">
-          <?php echo form_open('comment/createForProfile'); ?>
-            <input type="hidden" name="applicant_id" value="<?php echo $applicant->id; ?>" />
-            <input type="hidden" name="from_user_id" value="<?php echo getLoggedUser()->id; ?>" />
-            <div class="large-12 columns">
-              <div><textarea name="comment" placeholder="Write a comment..."></textarea></div>
-              <div><button class="tiny radius btnSendMsg">Post Comment</button></div>
-            </div>
-          </form>
-        </div>
-      <?php }///if $comments. ?>
-    <?php
+      </div-->
+      <?php 
         }///if getRoleName(). 
       } ///if getLoggedUser(). 
     ?>
+
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+          <h5>Comments</h5>
+        </div>
+      </div>
+
+      <div class="row comments">
+      <?php 
+        if(isset($comments))
+        {
+          foreach($comments as $c)
+          {
+            echo $this->load->view
+            (
+              'commons/partials/comments/listing', 
+              array('comment' => $c), 
+              true
+            );
+          }
+        }
+      ?>
+      </div>
+
+    <?php if(isLoggedIn()){ ?>
+    <div class="row create">
+      <?php echo form_open('comment/createForProfile'); ?>
+        <div class="large-12 columns">
+            <input type="hidden" 
+                  name="applicant_id" 
+                  value="<?php echo $applicant->id; ?>" />
+            <div>
+              <textarea name="comment" 
+                    placeholder="Write a comment..."></textarea>
+            </div>
+            <div>
+              <button class="tiny radius">
+                Post Comment
+              </button>
+            </div>
+        </div>
+      </form>
+    </div>
+    <?php } ?>
 </div>

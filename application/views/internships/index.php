@@ -1,6 +1,11 @@
 <div id="internship" class="index row">
-  <h4>My Posted Internships</h4>
-  <a href="<?php echo site_url('internship/create'); ?>" class="button radius small">New Internship</a>
+  <div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+      <h4>My Posted Internships</h4>
+      <a href="<?php echo site_url('internship/create'); ?>" class="button radius small">New Internship</a>
+      <br /><br />
+    </div>
+  </div>
 	<div class="listing">
     <?php 
       foreach($internships as $i)

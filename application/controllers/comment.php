@@ -4,11 +4,31 @@ class Comment extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array
+      (
+        'create',
+        'createForProfile',
+        'update', 
+        'updateApproved',
+        'delete'
+      )
+    );
     $this->load->model('commentmodel');
 	}
   public final function index()
   {
-    $o = $this->commentmodel->index()->result();
+    $r = getRoleName();
+    $uId = getLoggedUser()->id;
+    if($r == 'Applicant')
+    {
+      $o = $this->commentmodel->readByUserId($uId)->result();
+    }
+    else if($r == 'Employer')
+    {
+      $o = $this->commentmodel->readByUserId($uId, 'from')->result();
+    }
     showView('comments/index', array('comments' => $o));
   }
   public final function create()
@@ -41,23 +61,35 @@ class Comment extends CI_Controller
   {
     if($this->input->post())
     {
-      //if($this->form_validation->run('comment/create')){
-        $o = $this->commentmodel->createForProfile()->row();
-        if($o->id)
+      if($this->form_validation->run('comment/create'))
+      {
+        $o = $this->commentmodel->createForProfile();
+        if($o->num_rows() > 0)
         {
-          $this->load->model('applicantmodel');
-          $uId = $this->applicantmodel->read($this->input->post('applicant_id'))->row()->user_id;
-          redirect(site_url('applicant/readByUserId/' . $uId . '#comments'));
+          showJsonView
+          (
+            array
+            (
+              'success' => true,
+              'view' => $this->load->view
+              (
+                'commons/partials/comments/listing', 
+                array('comment' => $o->row()), 
+                true
+              )
+            )
+          );
         }
         else
         {
           show_error('Error creating comment.');
         }
-      /*}
+      }
       else
       {
-        redirect(site_url('applicant/readByUserId/' . $uId . '#comments'));
-      }*/
+        //redirect(site_url('applicant/readByUserId/' . $uId . '#comments'));
+        //showJsonView();
+      }
     }
   }
 	public final function read($id)

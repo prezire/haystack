@@ -4,6 +4,10 @@ class Applicant extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+    validateLoginSession
+    (
+      array('update', 'delete')
+    );
     $this->load->model('applicantmodel');
 	}
   public final function index()
@@ -65,22 +69,21 @@ class Applicant extends CI_Controller
     $this->load->model('usermodel');
     $user = $this->usermodel->read($appl->user_id)->row();
     $a = array('applicant' => $appl, 'user' => $user);
-		showView('applicants/read', $a);
+    $this->load->model('commentmodel');
+    $a['comments'] = $this->commentmodel->readByUserId($user->id, 'to')->result();
+    showView('applicants/read', $a);
 	}
 	public final function readByUserId($userId)
 	{
     $this->load->model('usermodel');
+    $this->load->model('commentmodel');
     $user = $this->usermodel->read($userId)->row();
     $appl = $this->applicantmodel->readByUserId($userId)->row();
-    //
-    $this->load->model('commentmodel');
-    $comments = $this->commentmodel->readByCommentedUserId($userId)->result();
-    //
     $a = array
     (
       'applicant' => $appl, 
       'user' => $user,
-      'comments' => $comments
+      'comments' => $this->commentmodel->readByUserId($userId)->result()
     );
 		showView('applicants/read', $a);
 	}

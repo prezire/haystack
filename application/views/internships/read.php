@@ -15,20 +15,29 @@
         ?>
     </div>
     <div class="small-12 medium-3 large-3 columns">
-      <?php
-        $sDisabled = 'disabled ';
-        if(getLoggedUser())
-        {
-          $usr = getLoggedUser();
-          $roleName = getRoleById($usr->role_id)->row()->name;
-          if($roleName == 'Applicant')
+      <div class="right">
+        <?php
+          $sDisabled = 'disabled ';
+          if(getLoggedUser())
           {
-            $sDisabled = '';
+            $usr = getLoggedUser();
+            $roleName = getRoleById($usr->role_id)->row()->name;
+            if($roleName == 'Applicant')
+            {
+              if(!$hasApplied)
+              {
+                $sDisabled = '';
+              }
+            }
+            else if($roleName == "Employer")
+            {
+              echo '<a href="' . site_url('internship/update/' . $internship->internship_id) . '" class="button radius small">Update</a> ';    
+            }
           }
-        }
-        echo '<a href="#" class="' . $sDisabled . 'button radius small"><i class="fa fa-check-circle"></i> Apply</a> ';
-        echo '<a href="#" class="' . $sDisabled . 'button tiny radius"><i class="fa fa-bookmark"></i> Bookmark</a>';
-      ?>
+          echo '<a href="' . site_url('internshipapplication/createFromApplication/' . $internship->internship_id) . '" class="' . $sDisabled . 'button radius small apply"><i class="fa fa-check-circle"></i> Apply</a> ';
+          //echo '<a href="#" class="' . $sDisabled . 'button tiny radius"><i class="fa fa-bookmark"></i> Bookmark</a>';
+        ?>
+      </div>
     </div>
   </div>
 

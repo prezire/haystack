@@ -9,8 +9,12 @@
     font-size: 12px;
   }
 
+  b{display: inline-block; margin-bottom: 8px;}
+
   button,
   .button{padding-top: 9px;}
+
+  .content h5{margin: 0;}
 
   input[type="text"],
   select,
@@ -54,7 +58,7 @@
   /*header nav ul li a{font-size: 12px;}*/
   
   h5, p{font-size: 13px; margin-bottom: 3px;}
-  hr{margin: 8px;}
+  hr{margin: 8px 0;}
   
   table .button{margin: 0;}
   table tbody tr td, table tr td{padding-top: 2px; padding-bottom: 2px;}
@@ -83,12 +87,16 @@
   header nav ul{margin-top: 40px;}
   header .logo{margin-top: 27px;}
 
-  .row.panel{margin-bottom: 4px; background-color: #fff;}
+  .row.panel{margin-bottom: 4px; background-color: #fff; padding: 8px;}
   .row.panel .columns{padding-left: 0;}
-  .row.panel .columns:nth-child(2){margin-top: 11px;}
+  /*.row.panel .columns:nth-child(2){margin-top: 11px;}*/
   /*/Commons.*/
   
   /*Home.*/
+  #home.index .row.works{overflow: auto; width: 250px;}
+  #home.index .row.features{clear: left; margin-top: 20px;}
+  #home.index .row.features img{max-width: 300px; height: 150px;}
+  #home.index .row.features .button{margin-top: 8px;}
   #home.index .summary.panel{padding-bottom: 5px;}
   #home.index ul{list-style-type: none;}
   #home .listing.panel{padding-bottom: 0; margin-bottom: 0;}
@@ -96,7 +104,11 @@
   /*/Home.*/
   
   /*Applicant.*/
-  #applicant.read .comments .comment{margin-top: 8px; margin-bottom: 4px;}
+  #applicant.read .comments .comment
+  {
+    margin: 4px;
+    padding: 8px;
+  }
   #applicant.read .comments{margin-top: 8px;}
   #applicant.read .comments .dateTime{color: #666; font-size: 13px; padding-top: 3px;}
   /*/Applicant.*/
@@ -120,7 +132,8 @@
   select{font-size: 11px; padding: 4px; margin: 4px 0;}
   #resume textarea{height: 100px;}
 
-  #resume li{
+  #resume.update li
+  {
     padding: 4px; 
     padding-right: 20px; 
     position: relative;
@@ -129,24 +142,24 @@
     background-color: #eee;
     margin-bottom: 20px;
   }
-  #resume li .row .columns{padding: 4px;}
+  #resume.update li .row .columns{padding: 4px;}
   #resume li .close{
     position: absolute; 
     right: 5px;
     top: -5px;
     font-size: 20px;
   }
+
+  #resume.read ul{margin-left: 15px;}
+  #resume.read li{font-size: 12px;}
+  #resume.read > section.panel.radius{background-color: #fff;}
+  #resume.read li .row .columns{padding: 0;}
+  #resume.read .row .row .columns{line-height: 21px;}
+  #resume.read .row.panel{padding: 4px 8px;}
   /*/Resume.*/
 
   /*Internship.*/
-  #search .listing .row .columns
-  {
-    border-top: 1px solid #ccc;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    margin-bottom: 8px;
-    /*font-size: 12px;*/
-  }
+  #search .listing .row .columns{margin-bottom: 8px;}
   #internship .listing .row .columns.primary,
   #search .listing .row .columns.primary{border: none;}
   #internship .listing .row .columns a,
@@ -168,6 +181,14 @@
   #internship .button.radius{margin-bottom: 0;}
   /*/Internship.*/
 
+  /*Internship Applications.*/
+  #internshipApplication.index.employer .applicants.panel
+  {
+    padding: 4px !important;
+    margin-top: 8px;
+  }
+  /*/Internship Application.*/
+
   /*Contact.*/
   #contact .social{margin: 0;}
   #contact .social li
@@ -188,7 +209,7 @@
 /* min-width 641px, medium screens */
 @media only screen and (min-width: 40.063em) 
 { 
-  /*Commons.*/
+    /*Commons.*/
     #map{min-height: 250px;}
     header .logo{margin-top: 17px; display: inline-block;}
     header nav ul{margin-left: 0;}
@@ -200,12 +221,12 @@
     .row.panel .columns:nth-child(2){margin-top: 0;}
     /*/Commons.*/
 
+    /*Home.*/
+    #home.index .row.works{width: auto;}
+    /*/Home.*/
+
     /*Internship.*/
-    #search .listing .row .columns.primary
-    {
-      border-top: 1px solid #ccc;
-      padding-left: 0;
-    }
+    #search .listing .row .columns.primary{padding-left: 0;}
     /*/Internship.*/
 } 
 

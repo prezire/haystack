@@ -1,6 +1,8 @@
 <div id="internship" class="create row">
   <div class="row">
-    <h4>New Internship</h4>
+    <div class="large-12 columns">
+      <h4>New Internship</h4>
+    </div>
   </div>
     <?php 
       echo validation_errors();
@@ -8,8 +10,8 @@
     ?>      
       
       <div class="row">
-        <div class="large-6 columns">Name: <input type="text" name="name" /></div>
-        <div class="large-6 columns">Salary: <input type="text" name="salary" /></div>
+        <div class="large-6 columns">Name: <input type="text" name="name" placeholder="e.g. Project Manager" /></div>
+        <div class="large-6 columns">Salary (USD): <input type="text" name="salary" /></div>
       </div>
 
       <div class="row">
@@ -18,12 +20,12 @@
       </div>
       
       <div class="row">
-        <div class="large-12 columns">Description: <textarea name="description" placeholder="e.g. Job description and job requirements"></textarea></div>
+        <div class="large-12 columns">Description: <textarea name="description" placeholder="e.g. Job description and requirements"></textarea></div>
       </div>
       
       <div class="row">
-        <div class="large-6 columns">Date From: <input type="text" name="date_from" class="datepicker" /></div>
-        <div class="large-6 columns">Date To: <input type="text" name="date_to" class="datepicker" /></div>
+        <div class="large-6 columns">Date From: <input type="text" name="date_from" class="from datepicker" /></div>
+        <div class="large-6 columns">Date To: <input type="text" name="date_to" class="to datepicker" /></div>
       </div>
       
       <div class="row">
@@ -36,8 +38,9 @@
         <div class="large-6 columns">Vacancy: <input type="text" name="vacancy_count" /></div>
       </div>
       <div class="row">
-        <a href="<?php echo site_url('internship/readMyPosts'); ?>" class="button alert small radius">Cancel</a>
-        <button class="small radius">Create</button>
+        <div class="large-12 columns">
+          <button class="small radius">Create</button>
+        </div>
       </div>
   </form>
 </div>
