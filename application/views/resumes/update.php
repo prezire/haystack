@@ -56,7 +56,9 @@
             Headline <textarea name="headline" placeholder="Description about your career path."><?php echo set_value('headline', $resume->headline); ?></textarea>
           </div>
           <div class="small-4 medium-2 large-2 columns">
-            <img class="right" src="<?php echo base_url('public/uploads/' . $resume->image_path); ?>" />
+            <div class="avatar">
+              <img class="right" src="<?php echo base_url('public/uploads/' . $resume->image_path); ?>" />
+            </div>
           </div>
         </div>
         
@@ -127,8 +129,8 @@
     <hr />
     <section class="workHistories">
       <div class="row">
-        <div class="small-3 medium-3 large-6 columns"><h5>Work History</h5></div>
-        <div class="small-3 medium-3 large-6 columns"><i class="fa fa-angle-left right"></i></div>
+        <div class="small-11 medium-3 large-6 columns"><h5>Work History</h5></div>
+        <div class="small-1 medium-3 large-6 columns"><i class="fa fa-angle-left right"></i></div>
       </div>
       <?php echo form_open('workhistory/update'); ?>
         <div class="row">
@@ -151,8 +153,8 @@
     <hr />
     <section class="educations">
       <div class="row">
-        <div class="small-3 medium-3 large-6 columns"><h5>Education</h5></div>
-        <div class="small-3 medium-3 large-6 columns"><i class="fa fa-angle-left right"></i></div>
+        <div class="small-11 medium-3 large-6 columns"><h5>Education</h5></div>
+        <div class="small-1 medium-3 large-6 columns"><i class="fa fa-angle-left right"></i></div>
       </div>
       <?php echo form_open('education/update'); ?>
         <div class="row">
@@ -175,8 +177,8 @@
     <hr />
     <section class="skills">
       <div class="row">
-        <div class="small-3 medium-3 large-6 columns"><h5>Skills</h5></div>
-        <div class="small-3 medium-3 large-6 columns"><i class="fa fa-angle-left right"></i></div>
+        <div class="small-11 medium-3 large-6 columns"><h5>Skills</h5></div>
+        <div class="small-1 medium-3 large-6 columns"><i class="fa fa-angle-left right"></i></div>
       </div>
       <?php echo form_open('skill/update'); ?>
         <div class="row">
@@ -199,8 +201,8 @@
     <hr />
     <section class="certifications">
       <div class="row">
-        <div class="small-3 medium-3 large-6 columns"><h5>Certifications</h5></div>
-        <div class="small-3 medium-3 large-1 columns"><i class="fa fa-angle-left right"></i></div>
+        <div class="small-11 medium-3 large-6 columns"><h5>Certifications</h5></div>
+        <div class="small-1 medium-3 large-1 columns"><i class="fa fa-angle-left right"></i></div>
       </div>
       <?php echo form_open('certification/update'); ?>
         <div class="row">
@@ -223,8 +225,8 @@
     <hr />
     <section class="additionalInformations">
       <div class="row">
-        <div class="small-10 medium-10 large-10 columns"><h5>Additional Information</h5></div>
-        <div class="small-2 medium-2 large-2 columns"><i class="fa fa-angle-left right"></i></div>
+        <div class="small-11 medium-10 large-10 columns"><h5>Additional Information</h5></div>
+        <div class="small-1 medium-2 large-2 columns"><i class="fa fa-angle-left right"></i></div>
       </div>
       <?php 
         echo $this->load->view

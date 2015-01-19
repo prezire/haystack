@@ -23,18 +23,19 @@
               case 'Applicant':
                 //echo '<li><a href="' . site_url('internship/bookmarks') . '">Bookmarks</a></li>';
                 //echo '<li><a href="' . site_url('internship/alert') . '">Alerts</a></li>';
+                echo '<li><a href="' . site_url('internshipapplication') . '">Applications</a></li>';
               break;
               case 'Employer':
                 echo '<li><a href="' . site_url('internship/readMyPosts') . '">Internships</a></li>';
-                //echo '<li><a href="' . site_url('applicant/pools') . '">Pools</a></li>';
+                echo '<li><a href="' . site_url('pooledapplicant') . '">Pools</a></li>';
                 //echo '<li><a href="' . site_url('analytics') . '">Analytics</a></li>';
                 echo '<li><a href="' . site_url('comment') . '">Comments</a></li>';
+                echo '<li><a href="' . site_url('internshipapplication') . '">Applications</a></li>';
               break;
               case 'Subscriber':
                 echo '<li><a href="' . site_url('comment') . '">Comments</a></li>';
               break;
             }
-            echo '<li><a href="' . site_url('internshipapplication') . '">Applications</a></li>';
           }
           else
           {

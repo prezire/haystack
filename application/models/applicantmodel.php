@@ -30,12 +30,10 @@
         );
         $this->load->model('rolemodel');
         $a['role_id'] = $this->rolemodel->readByName($i->post('role'))->row()->id;
-        $a['enable_token'] = md5(date('Ymd') . rand(0, 999) . time());
+        $a['enable_token'] = generateToken($a['role_id']);
         $this->db->insert('users', $a);
         $uId = $this->db->insert_id();
-        //upload('image_path');
-        //upload('resume_path');
-        //
+        upload('image_path');
         $this->db->insert
 				(
 					'applicants', 
@@ -90,17 +88,13 @@
 		public final function update()
 		{
 			$i = $this->input;
-      //
-      //
-			$id = $i->post('id');
+      $id = $i->post('id');
 			$this->db->where('id', $id);
 			$this->db->update
       (
         'applicants', 
         getPostValuePair()
       );
-      //
-      
       return $this->read($i->post('id'));
 		}
 		public final function delete($id)

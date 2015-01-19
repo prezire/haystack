@@ -21,13 +21,15 @@ class Comment extends CI_Controller
   {
     $r = getRoleName();
     $uId = getLoggedUser()->id;
-    if($r == 'Applicant')
+    switch($r)
     {
-      $o = $this->commentmodel->readByUserId($uId)->result();
-    }
-    else if($r == 'Employer')
-    {
-      $o = $this->commentmodel->readByUserId($uId, 'from')->result();
+      case 'Applicant':
+        $o = $this->commentmodel->readByUserId($uId)->result();
+      break;
+      case 'Employer':
+      case 'Subscriber':
+        $o = $this->commentmodel->readByUserId($uId, 'from')->result();
+      break;
     }
     showView('comments/index', array('comments' => $o));
   }
@@ -98,8 +100,8 @@ class Comment extends CI_Controller
 	}
   public final function updateApproved($id, $approved)
   {
-    $b = $this->commentmodel->updateApproved($id, $approved)->row()->approved;
-    showJsonView(array('success' => $b));
+    $this->commentmodel->updateApproved($id, $approved);
+    showJsonView(array('status' => 'success'));
   }
 	public final function update($id = null)
   {

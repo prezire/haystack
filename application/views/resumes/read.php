@@ -16,13 +16,15 @@
             <?php echo $resume->headline; ?>
           </div>
           <div class="small-4 medium-2 large-2 columns">
-            <?php 
-              $img = $resume->image_path;
-              $img = strlen($img) < 1 ? 
-                    base_url('public/img/avatar.jpg') : 
-                    base_url('public/uploads/' . $img);
-            ?>
-            <img class="right" src="<?php echo $img; ?>" />
+            <div class="avatar">
+              <?php 
+                $img = $resume->image_path;
+                $img = strlen($img) < 1 ? 
+                      base_url('public/img/avatar.jpg') : 
+                      base_url('public/uploads/' . $img);
+              ?>
+              <img class="right" src="<?php echo $img; ?>" />
+            </div>
           </div>
         </div>
         

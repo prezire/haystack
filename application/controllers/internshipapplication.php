@@ -27,8 +27,19 @@
         else if(getRoleName() == 'Employer')
         {
           $emplId = $this->employermodel->readByUserId($uId)->row()->id;
-          $o = $this->internshipapplicationmodel->readBySpecificId($emplId, 'employer')->result();
-          showView('internship_applications/employer', array('applications' => $o));
+          $o = $this->internshipapplicationmodel->readBySpecificId
+          (
+            $emplId, 
+            'employer'
+          )->result();
+          showView
+          (
+            'internship_applications/employer', 
+            array
+            (
+              'applications' => $o
+            )
+          );
         }
         
       }

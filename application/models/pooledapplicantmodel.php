@@ -7,8 +7,11 @@
 		}
 		public final function index()
 		{
-			$this->db->select('p.*');
+			$this->db->select('*, p.id pool_id, a.id applicant_id');
 			$this->db->from('pooled_applicants p');
+			$this->db->join('applicants a', 'p.applicant_id = a.id');
+			$this->db->join('users u', 'a.user_id = u.id');
+			$this->db->join('employers e', 'p.employer_id = e.id');
 			return $this->db->get();
 		}
 		public final function create()
@@ -26,7 +29,8 @@
 			$this->db->select('*');
 			$this->db->from('pooled_applicants p');
 			$this->db->join('applicants a', 'p.applicant_id = a.id');
-			$this->db->join('employers e', 'p.employer_id = e.id')
+			$this->db->join('users u', 'a.user_id = u.id');
+			$this->db->join('employers e', 'p.employer_id = e.id');
 			$this->db->where('p.id', $id);
 			return $this->db->get();
 		}
@@ -38,6 +42,14 @@
 	        array('id' => $id)
 	      );
 		}
+		public final function readByApplicantId($applicantId)
+		{
+	      return $this->db->get_where
+	      (
+	        'pooled_applicants', 
+	        array('applicant_id' => $applicantId)
+	      );
+		}
 		public final function update()
 		{
 			$i = $this->input;
@@ -46,8 +58,9 @@
 			$this->db->update
 			(
 				'pooled_applicants', 
-				getPostValuePair()
+				getPostValuePair(array('id'))
 			);
+			return $this->read($id);
 		}
 		public final function delete($id)
 	    {

@@ -71,6 +71,14 @@ class Applicant extends CI_Controller
     $a = array('applicant' => $appl, 'user' => $user);
     $this->load->model('commentmodel');
     $a['comments'] = $this->commentmodel->readByUserId($user->id, 'to')->result();
+    if(getRoleName() == 'Employer')
+    {
+      $this->load->model('pooledapplicantmodel');
+      $this->load->model('employermodel');
+      $a['applicantId'] = $id;
+      $a['isPooled'] = $this->pooledapplicantmodel->readByApplicantId($id)->num_rows() > 0;
+      $a['employerId'] = $this->employermodel->readByUserId(getLoggedUser()->id)->row()->id;
+    }
     showView('applicants/read', $a);
 	}
 	public final function readByUserId($userId)
@@ -126,11 +134,4 @@ class Applicant extends CI_Controller
   {
     showJsonView(array('applicant' => $this->applicant_model->delete($id)->row()));
   }
-  //Pools.
-  public final function pools()
-  {
-    //Check session.
-  }
-  public final function createPool(){}
-  public final function deletePool(){}
 }

@@ -1,12 +1,19 @@
 <div id="user" class="update row">
      <div class="row">
-      <h4>Update Profile (<?php echo getRoleName(); ?>)</h4>
-      <?php 
-        if($this->session->flashdata('update') == 'success') { ?>
-        <div class="alert-box success radius">
-          User was updated.
-        </div>
-      <?php } ?>
+      <div class="large-12 columns">
+        <h4>Update Profile (<?php echo getRoleName(); ?>)</h4>
+        <?php 
+          if($this->session->flashdata('update') == 'success') { ?>
+          <div class="alert-box success radius">
+            User was updated.
+          </div>
+          <script>
+            $('#user.update .alert-box.success.radius').delay(5000).fadeOut(function(){
+               $(this).remove(); 
+            });
+          </script>
+        <?php } ?>
+      </div>
      </div>
     <?php 
         echo validation_errors();
@@ -15,7 +22,7 @@
       <input type="hidden" name="id" value="<?php echo set_value('id', $user->id); ?>" />      
       
       <div class="row">
-        <div class="large-6 medium-6 small-6 columns">
+        <div class="large-6 medium-6 small-8 columns">
           <?php 
             $img = strlen($user->image_path) < 1 ? base_url('public/img/avatar.jpg') : 
                     base_url('public/uploads') . 
@@ -27,7 +34,7 @@
           <input type="file" name="image_path" />
         </div>
         <?php if(getRoleName() == 'Applicant'){ ?>
-        <div class="large-6 medium-6 small-6 columns">
+        <div class="large-6 medium-6 small-4 columns">
           <a href="<?php echo site_url('resume/updateBySession'); ?>" class="button tiny radius">
             View resume
           </a>
@@ -66,6 +73,31 @@
       <div class="row">
         <div class="large-6 columns">Address: <input type="text" name="address" value="<?php echo set_value('address', $user->address); ?>" />      </div>
         <div class="large-6 columns">Nationality: <input type="text" name="nationality" value="<?php echo set_value('nationality', $user->nationality); ?>" /></div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-6 large-6 columns">
+          City:
+          <input type="text" name="city" value="<?php echo set_value('city', $user->city); ?>" />
+        </div>
+        <div class="small-12 medium-6 large-6 columns">
+          State:
+          <input type="text" name="state" value="<?php echo set_value('state', $user->state); ?>" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+          Country: 
+          <?php 
+            echo form_dropdown
+            (
+              'country', 
+              getCountries(), 
+              set_value('country')
+            ); 
+          ?>
+        </div>
       </div>
       
       <!-- TODO: Contact Me form. -->

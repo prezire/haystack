@@ -6,7 +6,7 @@ Employer
 * Create Job Posting. Impl datepicker from resume.
 * View Applicants
 * Set Applicant Status
-* Give Performance Ratings
+* Give Performance Ratings (Remove)
 * Save Applicant Pool
 
 Applicant
@@ -15,6 +15,7 @@ Applicant
 * View Employers
 * Search and Apply Internship Posting
 * Track Application Status (Reviewed)
+* Applied Internships (include date applied)
 * View Performance Feedback
 * Toggle approve/disapprove comments
 
@@ -26,6 +27,7 @@ Common
 * Enhance FAQ to serve as manual
 * Security
 * Show internships within dates
+* Update password
 
 References:
  * Pricing http://www.jobstreet.com.sg/employers/

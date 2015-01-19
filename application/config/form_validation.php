@@ -94,6 +94,15 @@ $config = array
 			'rules' => 'required|xss_clean|trim'
 		)
 	),
+	'pooledApplicant/update' => array
+	(
+		array
+		(
+			'field' => 'notes',
+			'label' => 'Notes',
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
   	'employer/create' => array
 	(
 		array
@@ -161,18 +170,42 @@ $config = array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
-			'rules' => ''
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|is_unique[users.email]|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full Name',
+			'rules' => 'required|xss_clean|trim'
 		)
 	),
   	'subscriber/update' => array
 	(
 		array
 		(
-			'field' => '',
-			'label' => '',
-			'rules' => ''
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|xss_clean|trim|valid_email'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'full_name',
+			'label' => 'Full Name',
+			'rules' => 'required|xss_clean|trim'
 		)
 	),
 	'internship/create' => array
@@ -242,6 +275,21 @@ $config = array
         'field' => 'email',
         'label' => 'Email',
         'rules' => 'required|valid_email|xss_clean|trim'
+      )
+    ),
+    'auth/updatePassword' => array
+    (
+      array
+      (
+        'field' => 'password',
+        'label' => 'New Password',
+        'rules' => 'required|xss_clean|trim|matches[confirm_password]'
+      ),
+      array
+      (
+        'field' => 'confirm_password',
+        'label' => 'Confirm New Password',
+        'rules' => 'required|xss_clean|trim'
       )
     ),
     'comment/create' => array

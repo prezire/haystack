@@ -1,5 +1,16 @@
 <div id="home" class="index">
   
+  <div class="row intro">
+    <div class="small-12 medium-12 large-12 columns">
+      Welcome to Simpifie Haystack. Intro here...<br /><br />
+
+      <a href="<?php echo site_url('auth/register#applicant'); ?>" class="button tiny radius">Applicants</a>
+      <a href="<?php echo site_url('auth/register#employer'); ?>" class="button tiny radius">Employers</a>
+      <a href="<?php echo site_url('auth/register#subscriber'); ?>" class="button tiny radius">Subscribers</a>
+      <hr />
+    </div>
+  </div>
+
   <?php echo $this->load->view('commons/partials/search', null, true); ?>
   
   <div class="row expandable">
@@ -92,10 +103,9 @@
       <img src="<?php echo base_url('public/img/organizer.jpg'); ?>" />
       <hr />
       <div>
-        Manage your applications, comments and relevent information
-        from a single site. For employers, vacancies, 
-        track applied posts, comments / feedbacks and sent
-        messages. For applicants, track which internships you've
+        From a single site, employers can manage vacancies, 
+        track applied posts, comments, feedbacks and sent
+        messages. Applicants can track, which positions you've
         applied, manage comments and easily search for opportunities.
       </div>
       <a href="#" class="button radius tiny">Read more</a>

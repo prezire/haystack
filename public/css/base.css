@@ -2,20 +2,28 @@
 @media only screen 
 {
   /*Commons.*/
+  body, header nav ul li a:hover{background-color: #2A3239;}
+
   body,
-  #ui-datepicker-div
-  {
-    font-family: "raleway-regular", arial;
-    font-size: 12px;
-  }
-
-  b{display: inline-block; margin-bottom: 8px;}
-
-  button,
-  .button{padding-top: 9px;}
+  #ui-datepicker-div{font-family: "raleway-regular", arial;}
+  b, strong{display: inline-block; margin: 4px 0;}
+  
+  body,
+  .content,
+  .columns,
+  #ui-datepicker-div .ui-datepicker-title,
+  #ui-datepicker-div a,
+  #ui-datepicker-div th,
+  #faq li,
+  textarea{font-size: 12px;}
 
   .content h5{margin: 0;}
-
+  button, .button
+  {
+    padding-top: 9px; 
+    margin: 4px 0; 
+    font-size: 11px !important;
+  }
   input[type="text"],
   select,
   button,
@@ -48,7 +56,7 @@
   .row .row{margin-left: 0; margin-right: 0;}
   
   .avatar{max-width: 160px;}
-  .main .work{max-width: 250px;}
+  .main .work{max-width: 250px; margin: 1px;}
   
   .main .work,
   .avatar{height: auto;}
@@ -58,22 +66,25 @@
   /*header nav ul li a{font-size: 12px;}*/
   
   h5, p{font-size: 13px; margin-bottom: 3px;}
-  hr{margin: 8px 0;}
+  
+  hr{border-color: rgba(43, 50, 57, 0.15); margin: 8px 0;}
   
   table .button{margin: 0;}
   table tbody tr td, table tr td{padding-top: 2px; padding-bottom: 2px;}
 
   .button.radius,
   button.small,
-  .button.small{padding: 8px; font-size: 11px;}
+  .button.small{padding: 9px; font-size: 11px;}
   .postfix.button{width: 30px;}
 
   #search{margin-top: 11px;}
+  #search .fa.fa-search{font-size: 11px;}
+  #search button{padding-top: 8px;}
   
   input[type="file"],
   input[type="text"],
   button,
-  #home.index ul{margin: 0; margin-bottom: 4px;}
+  #home.index ul{margin: 4px 0;}
 
   .tabs dd.active a{outline: none;}
 
@@ -82,7 +93,9 @@
   .alert-box.alert p{margin: 0;}
   .header.columns{padding: 0;}
 
-  header nav ul li a:hover{background-color: #666; color: #fff;}
+  header{background-color: #fff;}
+
+  header nav ul li a:hover{color: #fff;}
   header nav ul li a{padding: 4px 0;}
   header nav ul{margin-top: 40px;}
   header .logo{margin-top: 27px;}
@@ -90,17 +103,31 @@
   .row.panel{margin-bottom: 4px; background-color: #fff; padding: 8px;}
   .row.panel .columns{padding-left: 0;}
   /*.row.panel .columns:nth-child(2){margin-top: 11px;}*/
+
+  #search button{margin-left: 4px;}
+
+  #user .avatar,
+  #resume .avatar{width: 100px; height: 100px;}
   /*/Commons.*/
+
+  /*FAQ.*/
+  #faq h5{font-weight: bold;}
+  /*/FAQ.*/
   
-  /*Home.*/
-  #home.index .row.works{overflow: auto; width: 250px;}
+  /*Home.*/ 
   #home.index .row.features{clear: left; margin-top: 20px;}
-  #home.index .row.features img{max-width: 300px; height: 150px;}
+  #home.index .row.features img{width: 100%; height: auto;}
   #home.index .row.features .button{margin-top: 8px;}
   #home.index .summary.panel{padding-bottom: 5px;}
   #home.index ul{list-style-type: none;}
   #home .listing.panel{padding-bottom: 0; margin-bottom: 0;}
-  #home .listing.panel .button{margin-bottom: 0;}
+  #home.index .row.works .work a
+  {
+    display: inline-block;
+    height: 250px;
+  }
+  #home.index .row.works .work a,
+  #home.index .row.works{width: 250px;}
   /*/Home.*/
   
   /*Applicant.*/
@@ -196,8 +223,8 @@
     text-decoration: none;
     display: inline-block;
     margin-right: 8px;
-    font-size: 25px;
   }
+  #contact i.fa{font-size: 20px;}
   /*/Contact.*/
 
   /*TOC and EULA.*/
@@ -207,8 +234,7 @@
 }
 
 /* min-width 641px, medium screens */
-@media only screen and (min-width: 40.063em) 
-{ 
+@media only screen and (min-width: 40.063em) { 
     /*Commons.*/
     #map{min-height: 250px;}
     header .logo{margin-top: 17px; display: inline-block;}
@@ -219,22 +245,49 @@
 
     input[type="email"]{margin: 0;}
     .row.panel .columns:nth-child(2){margin-top: 0;}
+
+    #comment h4,
+    #pooledApplicant h4,
+    #applicant h4,
+    #home h4{margin-left: -15px;}
     /*/Commons.*/
 
     /*Home.*/
+    #home.index .expandable .columns{padding-left: 0;}
+    #home.index .intro .columns{padding: 0;}
     #home.index .row.works{width: auto;}
+    #home.index .row.features .columns:first-child{padding-left: 0;}
     /*/Home.*/
+
+    /*Auth.*/
+    #auth.resetPassword .alert-box a
+    {
+      font-weight: bold; 
+      color: #fff;
+      text-decoration: underline;
+    }
+    #auth.login .columns{padding-left: 0;}
+    #auth.resetPassword button{margin: 0;}
+    #auth.login .row.options .columns:nth-child(2){padding: 4px 0;}
+    /*/Auth.*/
 
     /*Internship.*/
     #search .listing .row .columns.primary{padding-left: 0;}
     /*/Internship.*/
+
+    /*Applicant.*/
+    /*/Applicant.*/
+
+    /*Pooled Applicant.*/
+    #pooledApplicant.index button{margin-top: 0;}
+    /*/Pooled Applicant.*/
 } 
 
 
 /* min-width 1025px, large screens */
 @media only screen and (min-width: 64.063em) 
 { 
-  header{padding-left: 20px; border-right: 1px solid #E7E7E7;}
+  header{padding-left: 0; border-right: 1px solid rgba(43, 50, 57, 0.15);}
   header nav ul li a{display: block; padding-left: 8px;}
   #internship .row.panel .columns:nth-child(2){margin-top: 0;}
 }

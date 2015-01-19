@@ -1,6 +1,8 @@
 <div id="internship" class="read row">
   <div class="row">
-    <h4 class="large-12 columns">Internship</h4>
+    <div class="large-12 columns">
+      <h4>Internship</h4>
+    </div>
   </div>
 
   <div class="row panel radius">

@@ -19,27 +19,42 @@ class Subscriber extends CI_Controller
   {
     if($this->input->post())
     {
-      //if($this->form_validation->run('subscriber/create')){
+      if($this->form_validation->run('subscriber/create'))
+      {
         $o = $this->subscribermodel->create()->row();
         if($o->id)
         {
-          /*sendEmailer
+          $conf = $this->config->item('email');
+          $a = array
           (
-            'Simplifie - Haystack Verify Account',
-            'admin@simplifie.com',
-            $o->email
-          );*/
-          redirect(site_url('main/registerSuccess'));
+            'full_name' => $o->full_name,
+            'site_url' => site_url(),
+            'activation_url' => site_url('auth/enable/1/' . $o->enable_token)
+          );
+          //
+          sendEmailer
+          (
+            'Simplifie Haystack - Verify Account',
+            $conf['admin'],
+            'haystackuser@localhost' /*$o->email*/,
+            $this->parser->parse
+            (
+              'auth/emailers/account_activation', 
+              $a, 
+              true
+            )
+          );
+          redirect(site_url('auth/registerSuccess'));
         }
         else
         {
           show_error('Error creating subscriber.');
         }
-      /*}
+      }
       else
       {
         showView('subscribers/create');
-      }*/
+      }
     }
     else
     {

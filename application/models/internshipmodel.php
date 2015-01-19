@@ -1,4 +1,5 @@
-<?php	class InternshipModel extends CI_Model
+<?php	
+  class InternshipModel extends CI_Model
 	{
 		public function __construct()
 		{
@@ -45,6 +46,7 @@
     {
       $this->db->select("industry, count(id) as count");
 			$this->db->from('internships');
+      $this->db->where("NOW() BETWEEN date_from AND date_to");
       $this->db->group_by('industry');
 			return $this->db->get();
     }

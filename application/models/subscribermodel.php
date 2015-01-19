@@ -15,13 +15,14 @@
 			$i = $this->input;
 			if($i->post())
 			{
-        $a = getPostValuePair(array('role'));
-        $this->load->model('rolemodel');
-        $a['role_id'] = $this->rolemodel->readByName($i->post('role'))->row()->id;
+		        $a = getPostValuePair(array('role'));
+		        $this->load->model('rolemodel');
+		        $a['role_id'] = $this->rolemodel->readByName($i->post('role'))->row()->id;
+				$a['enable_token'] = generateToken($a['role_id']);
 				$this->db->insert('users', $a);
-        $uId = $this->db->insert_id();
-        //upload('avatar');
-        $this->db->insert
+		        $uId = $this->db->insert_id();
+		        upload('image_path');
+		        $this->db->insert
 				(
 					'subscribers', 
 					array('user_id' => $uId)

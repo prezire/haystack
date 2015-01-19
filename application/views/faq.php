@@ -1,6 +1,8 @@
 <div id="faq">
   <div class="row">
-    <h4 class="large-12 columns">FAQ</h4>
+    <div class="large-12 columns">
+      <h4>FAQ</h4>
+    </div>
   </div>
   <div class="row">
     <div  class="large-12 columns">
@@ -12,7 +14,7 @@
       <p>
         Well, the answer is simple. Apply for an Internship. 
         Of course, it's up to your employer whether he'll give you 
-        a pay allowance. Perform well and you'll get rewarded 
+        a salary. Perform well and you'll get rewarded 
         through praises from employers, managers and colleagues. 
         Use these praises as good points when applying for a 
         job you like.
@@ -27,7 +29,60 @@
         Ask them to register as a <a href="<?php echo site_url('auth/register#subscriber'); ?>">Subscriber</a>
         for them to give you comments and feedbacks about your performance.
       </p>
+
+      <hr />
+
+      <h5>What is Applicant Pooling</h5>
+      <p>
+        This feature is specific for employers similar to
+        bookmarks in order to organize applicants. It 
+        contains a Note field for items such as date hired,
+        performance or plans about such applicants.
+      </p>
+
+      <hr />
+
+      <h5>What are Comments?</h5>
+      <p>
+        These are praises, inputs, feedbacks from Subscribers, your employer, 
+        managers based on your performance when you undergo the position
+        you've applied. You can use these items as your reference when 
+        applying for another job.
+      </p>
+
+      <hr />
+
+      <h5>What are Applied Internships</h5>
+      <p>
+        These are the records of the open positions you've applied along with
+        the date when you actually applied for such position.
+      </p>
+
+      <hr />
+
+      <h5>As an applicant, where can I find vacant positions</h5>
+      <p>
+        Go to the <a href="<?php echo site_url('main'); ?>">home page</a>. 
+        You can then either search for keywords or locate "For Applicants" tab.
+      </p>
+
+      <hr />
       
+      <h5>Can I filter my resume to specific employers?</h5>
+      <p>Yes, you can.</p>
+
+      <hr />
+      
+      <h5>How many resumes can I create?</h5>
+      <p>
+        You can create up to 10 resumes. There are 3 different privacy settings to choose from:
+        <ul>
+          <li><b>Private</b> - Default. Only you can view the resume.</li>
+          <li><b>Unlisted</b> - The resume is public but the URL is not present in your public profile. Use the Forward button to send the URL to specific employers.</li>
+          <li><b>Public</b> - The resume is public and visible in your public profile from registered users.</li>
+        </ul>
+      </p>
+
       <hr />
       
       <h5>What's the answer to the chicken and egg problem?</h5>

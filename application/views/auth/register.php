@@ -32,8 +32,10 @@
   <div class="content" id="subscriber">
     <div class="row">
       <div class="large-12 columns">
-        A subscriber is somebody who can manage their profile and comment on an applicant's performance. Examples are members of academe, company managers,
-      HR personnel or an applican'ts colleage.
+        A subscriber is somebody who can manage their profile and 
+        comment on an applicant's performance. Examples are members 
+        of academe, company managers, HR personnel or an 
+        applicant's colleague.
       </div>
     </div>
     <?php echo $this->load->view('subscribers/create', null, true); ?>

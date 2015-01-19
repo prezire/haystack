@@ -67,6 +67,10 @@
         {
           foreach($comments as $c)
           {
+            //Prevent showing of unapproved comments to
+            //unregistered users.
+            if($c->approved < 1 && !isLoggedIn()) continue;
+            //
             echo $this->load->view
             (
               'commons/partials/comments/listing', 

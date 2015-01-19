@@ -16,7 +16,7 @@
 
       <div class="row">
         <div class="large-6 columns">Address: <input type="text" name="address" /></div>
-        <div class="small-6 medium-6 large-6 columns">Country: <?php echo form_dropdown('country', getCountries()); ?></div>
+        <div class="large-6 columns">Country: <?php echo form_dropdown('country', getCountries()); ?></div>
       </div>
       
       <div class="row">
@@ -30,12 +30,12 @@
       
       <div class="row">
         <div class="large-6 columns">Industry: <?php echo form_dropdown('industry', getIndustries()); ?></div>
-        <div class="large-6 columns">Working Hours: <input type="text" name="working_hours" /></div>
+        <div class="large-6 columns">Working Hours: <input type="text" name="working_hours" placeholder="e.g. 9" /></div>
       </div>
        
       <div class="row">
         <div class="large-6 columns">Shift Pattern: <?php echo form_dropdown('shift_pattern', getShiftPatterns(), 'No Shift'); ?></div>
-        <div class="large-6 columns">Vacancy: <input type="text" name="vacancy_count" /></div>
+        <div class="large-6 columns">Vacancy Count: <input type="text" name="vacancy_count" placeholder="e.g. 1" /></div>
       </div>
       <div class="row">
         <div class="large-12 columns">

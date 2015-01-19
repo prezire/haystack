@@ -2,6 +2,7 @@
 	<div class="row">
 	  <div class="small-12 medium-12 large-12 columns">
 	  	<h4>Applied Internships</h4>
+	  	<strong>Keep track of the positions you've applied.</strong>
 	  </div>
 	</div>
 	<?php 
@@ -24,16 +25,22 @@
 				  </div>
 				  <div class="small-12 medium-12 large-4 columns">
 				    <div class="calendar">
-				      <i class="fa fa-calendar"></i>
+				      <strong><i class="fa fa-calendar"></i></strong>
 				      <?php 
 				        echo toHumanReadableDate($i->date_from) . 
 				              ' - ' . 
 				              toHumanReadableDate($i->date_to); 
 				      ?>
 				    </div>
-				    <div><strong>Vacancy:</strong> <?php echo $i->vacancy_count; ?></div>
+				    <div>
+				    	<strong>Vacancy:</strong> 
+				    	<?php echo $i->vacancy_count; ?></div>
+
+				    	<strong>Applied on:</strong> 
+				    	<?php echo toHumanReadableDate($i->date_time_applied); ?></div>
 				  </div>
 				</div>
+
 		  </div>
 		</div>
 	<?php } ?> 

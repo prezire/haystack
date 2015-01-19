@@ -34,6 +34,7 @@
 	<script src="<?php echo base_url('public/libs'); ?>/jquery-ui-1.8.21.custom/development-bundle/ui/jquery.ui.core.js"></script>
 	<script src="<?php echo base_url('public/libs'); ?>/jquery-ui-1.8.21.custom/development-bundle/ui/jquery.ui.widget.js"></script>
 	<script src="<?php echo base_url('public/libs'); ?>/jquery-ui-1.8.21.custom/development-bundle/ui/jquery.ui.datepicker.js"></script>
+	<script src="<?php echo base_url('public/libs'); ?>/imgLiquid-master/js/imgLiquid-min.js"></script>
     
     <script type="text/javascript" src="<?php echo base_url('public/js/socials/fb.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('public/js/main.js'); ?>"></script>

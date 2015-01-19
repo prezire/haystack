@@ -42,7 +42,7 @@
 	}
     public final function readByUserId($userId, $type = 'to')
     {
-		$this->db->select('c.*, u1.id commenter_id, u1.full_name commenter_full_name, u2.full_name commented_full_name');
+		$this->db->select('c.*, c.id comment_id, u1.id commenter_id, u1.full_name commenter_full_name, u2.full_name commented_full_name');
 		$this->db->from('comments c');
 		$this->db->join('users u1', 'c.from_user_id = u1.id');
 		$this->db->join('users u2', 'c.to_user_id = u2.id');
@@ -54,7 +54,7 @@
 		{
 			$this->db->where('from_user_id', $userId);	
 		}
-		$this->db->where('approved', true);
+		$this->db->order_by('c.date_time', 'ASC');
 		return $this->db->get();
     }
 	public final function read($id)
@@ -70,22 +70,21 @@
       $b = $approved == 'true' ? true : false;
       $this->db->where('id', $id);
       $this->db->update('comments', array('approved' => $b));
-      return $this->read($id);
     }
-		public final function update()
-		{
-			$i = $this->input;
-			$id = $i->post('id');
-			$this->db->where('id', $id);
-			$this->db->update
-      (
-        'comments', 
-        getPostValuePair()
-      );
-		}
-		public final function delete($id)
+	public final function update()
+	{
+		$i = $this->input;
+		$id = $i->post('id');
+		$this->db->where('id', $id);
+		$this->db->update
+		(
+			'comments', 
+			getPostValuePair()
+		);
+	}
+	public final function delete($id)
     {
       $this->db->where('comment.id', $id);
-			return $this->db->delete();
+      return $this->db->delete();
     }
-	}
+}

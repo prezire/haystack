@@ -1,7 +1,7 @@
 <div id="user" class="read row">
       
       <div class="row">
-        <div class="large-12 columns avatar">
+        <div class="large-11 columns avatar">
           <?php 
             $img = $user->image_path;
             $img = $img ? 
@@ -9,6 +9,26 @@
                   base_url('public/img/avatar.jpg');
           ?>
           <img src="<?php echo $img; ?>" />
+        </div>
+        <div class="large-1 columns">
+          <?php 
+            if(getRoleName() == 'Employer')
+            {
+              $sDisabled = $isPooled ? 'disabled' : '';
+          ?>
+              <a href="<?php echo site_url('pooledapplicant/create'); ?>" 
+                  class="pool button tiny radius" <?php echo $sDisabled; ?>
+                  applicantId = "<?php echo $applicantId; ?>"
+                  employerId = "<?php echo $employerId; ?>">
+                <i class="fa fa-bookmark"></i> Pool
+              </a>
+          <?php
+            }
+            else
+            {
+              echo '&nbsp;';
+            }
+          ?>
         </div>
       </div>
       <br />

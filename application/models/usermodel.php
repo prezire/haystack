@@ -18,12 +18,13 @@
     }
     public final function forgotPassword()
     {
-      $uId = $this->readByEmail($this->input->post('email'))->row();
-      if($uId > 0)
+      $o = $this->readByEmail($this->input->post('email'));
+      if($o->num_rows() > 0)
       {
+        $uId = $o->row()->id;
         $tok = generateToken($uId);
-        $this->db->where('id', $id);
-        $this->db->update('users', array('password_reset_token', $tok));
+        $this->db->where('id', $uId);
+        $this->db->update('users', array('password_reset_token' => $tok));
         return true;
       }
       return false;
@@ -58,6 +59,25 @@
         'users', 
         array('email' => $email)
       );
+    }
+    public final function readByPasswordResetToken($passwordResetToken)
+    {
+      return $this->db->get_where
+      (
+        'users', 
+        array('password_reset_token' => $passwordResetToken)
+      );
+    }
+    public final function updatePassword()
+    {
+      $this->db->where('id', $this->input->post('id'));
+      $a = array
+      (
+        'password' => $this->input->post('password'),
+        //Prevent re-use of token.
+        'password_reset_token' => ''
+      );
+      $this->db->update('users', $a);
     }
     private final function uploadAvatar($userId)
     {

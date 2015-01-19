@@ -1,5 +1,5 @@
 <div class="row panel radius comment">
-	<div class="small-12 medium-12 large-12 columns">
+	<div class="small-12 medium-12 large-10 columns">
 	  <div>
 	    <a href="#" class="commenter">
 	      <strong>
@@ -10,19 +10,23 @@
 	  </div>
 	  <div class="dateTime"><?php echo $comment->date_time; ?></div>
 	</div>
-	<div class="row">
-	  <div class="small-12 medium-12 large-12 columns">
-	  	<?php 
-		    if(getRoleName() == 'Applicant')
-		    {
-		    	//TODO: Delete btn.
-		    	//TODO: Approve btn
-		    } 
-		    else if(getRoleName() == 'Employer')
-		    {
-		    	//TODO: Delete btn.
-		    } 
+	<div class="small-12 medium-12 large-2 columns">
+		<?php 
+			if(isLoggedIn())
+			{ 
+				if(getRoleName() == 'Applicant')
+				{
+					$sApproved = $comment->approved < 1 ? '' : 'checked';
 		?>
-	  </div>
+			<input type="checkbox" 
+					class="approve" 
+					id="approve"
+					<?php echo $sApproved; ?>
+					url="<?php echo site_url('comment/updateApproved/' . $comment->comment_id); ?>">
+			<label for="approve">Approve</label>
+		<?php 
+				}
+			} 
+		?>
 	</div>
 </div>

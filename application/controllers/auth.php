@@ -5,10 +5,7 @@
     public function __construct()
     {
       parent::__construct();
-      validateLoginSession
-      (
-        array('enable', 'forgotPassword')
-      );
+      validateLoginSession(array('enable'));
     }
     public final function enable($state = 1, $enableToken)
     {
@@ -27,9 +24,36 @@
     public final function register(){showView('auth/register');}
     public final function registerSuccess(){showView('auth/register_success');}
     //
-    public final function resetPassword($passwordResetToken)
+    public final function updatePassword($passwordResetToken = null)
     {
-      //
+      $i = $this->input;
+      $this->load->model('usermodel');
+      if($i->post())
+      {
+        if($this->form_validation->run('auth/updatePassword'))
+        {
+          $this->usermodel->updatePassword();
+          showView
+          (
+            'auth/update_password', 
+            array
+            (
+              'status' => 'success', 
+              'id' => $i->post('id')
+            )
+          ); 
+        }
+        else
+        {
+          showView('auth/update_password', array('id' => $i->post('id')));
+        }
+      }
+      else
+      {
+        $uId = $this->usermodel->readByPasswordResetToken($passwordResetToken)->row()->id;
+        if(!$uId) redirect(site_url('auth/login'));
+        showView('auth/update_password', array('id' => $uId));
+      }
     }
     public final function forgotPassword(){
       $i = $this->input;
@@ -37,48 +61,62 @@
       {
         if($this->form_validation->run('auth/forgotPassword'))
         {
+          $this->load->model('usermodel');
           $b = $this->usermodel->forgotPassword();
-          if($b->id)
+          if($b)
           {
+            $user = $this->usermodel->readByEmail($i->post('email'))->row();
             $this->config->load('custom_configs');
             $c = $this->config->item('email');
+            $a = array
+            (
+              'email' => 'haystackuser@localhost' /*$user->email*/,
+              'full_name' => $user->full_name,
+              'url' => site_url('auth/updatePassword/' . $user->password_reset_token)
+            );
             sendEmailer
             (
               'Simplifie Haystack - Forgot Password', 
-              $b->email, 
-              $c['admin'], 
+              $c['admin'],
+              'haystackuser@localhost' /*$user->email*/,  
               $this->parser->parse
               (
-                'auth/emailers/reset_password',
-                array
-                (
-                  'email' => $b->email,
-                  'full_name' => $b->full_name,
-                  'url' => site_url('auth/resetPassword' . $b->password_reset_token)
-                ),
+                'auth/emailers/forgot_password',
+                $a,
                 true
               )
             );
-            $this->session->set_flashdata
+            showView
             (
-              'status', 
-              'A password reset emailer was sent to' . $b->email
-            );
-            showView('auth/reset_password_success'); 
+              'auth/forgot_password', 
+              array
+              (
+                'status' => 'success', 
+                'message' => 'A forgot password emailer was sent to ' . 
+                $i->post('email') . '.'
+              )
+            ); 
           }
           else
           {
-            showView('auth/reset_password', array('error' => 'No record of such email. Please try again.')); 
+            showView
+            (
+              'auth/forgot_password', 
+              array
+              (
+                'error' => 'No record of such email. Please try again.'
+              )
+            ); 
           }
         }
         else
         {
-          showView('auth/reset_password');
+          showView('auth/forgot_password');
         }
       }
       else
       {
-        showView('auth/reset_password');
+        showView('auth/forgot_password');
       }
     }
     public final function fbLogin($email, $fullName)

@@ -37,7 +37,8 @@
   */
   function validateLoginSession($methodNames, $type = 'include')
   {
-    $m = $this->router->fetch_method();
+    $CI = get_instance();
+    $m = $CI->router->fetch_method();
     $b = in_array($m, $methodNames);
     switch($type)
     {
@@ -63,7 +64,7 @@
   }
   function generateToken($key)
   {
-    return md5($key . rand(0, 999) . time());
+    return md5($key . date('Ymd') . rand(0, 999) . time());
   }
   function getLoggedUser()
   {
@@ -125,27 +126,36 @@
     $CI->email->bcc($cc);
     $CI->email->subject($subject);
     $CI->email->message($message);
+    //echo $message; exit;
     if(!$CI->email->send())
     {
       show_error($CI->email->print_debugger());
+      exit;
     }
   }
   function upload($fieldName)
   {
-    $config['upload_path'] = './public/uploads/';
-    $config['allowed_types'] = 'gif|jpg|png|pdf|doc';
-    $config['encrypt_name'] = true;
-    //
-    $CI = get_instance();
-    $CI->load->library('upload', $config);
-    if($CI->upload->do_upload($fieldName))
-		{
-      return $CI->upload->data();
-		}
-		else
-		{
-			return $CI->upload->display_errors();
-		}
+    if($_FILES[$fieldName]['error'] < 1)
+    {
+      $config['upload_path'] = './public/uploads/';
+      $config['allowed_types'] = 'gif|jpg|png|pdf|doc';
+      $config['encrypt_name'] = true;
+      //
+      $CI = get_instance();
+      $CI->load->library('upload', $config);
+      if($CI->upload->do_upload($fieldName))
+  		{
+        return $CI->upload->data();
+  		}
+  		else
+  		{
+  			return $CI->upload->display_errors();
+  		}
+    }
+    else
+    {
+      return null;
+    }
   }
   function getShiftPatterns()
   {

@@ -30,7 +30,8 @@
 			$a = array
 			(
 				'applicant_id' => $applId,
-				'internship_id' => $internshipId
+				'internship_id' => $internshipId,
+				'date_time_applied' => date("Y-m-d h:i:s")
 			);
 			$this->db->insert('internship_applications', $a);
 			//
