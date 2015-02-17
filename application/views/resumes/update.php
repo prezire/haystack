@@ -105,12 +105,13 @@
             ?>
           </div>
           <div class="small-6 medium-6 large-6 columns">
-            Expected Salary <input type="text" name="expected_salary" value="<?php echo set_value('expected_salary', $resume->expected_salary); ?>" disabled />
+            Expected Salary (USD) <input type="text" name="expected_salary" value="<?php echo set_value('expected_salary', $resume->expected_salary); ?>" disabled />
           </div>
         </div>
         <div class="row">
           <div class="small-6 medium-6 large-6 columns">
-            Current Industry <input type="text" name="current_industry" value="<?php echo set_value('current_industry', $resume->current_industry); ?>" />
+            Current Position Title 
+            <?php echo form_dropdown('current_position_title', getJobTitles(), set_value('current_position_title', $resume->current_position_title)); ?>
           </div>
           <div class="small-6 medium-6 large-6 columns">
             Qualification <input type="text" name="qualification" value="<?php echo set_value('qualification', $resume->qualification); ?>" />

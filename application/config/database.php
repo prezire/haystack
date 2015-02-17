@@ -53,6 +53,12 @@ $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'haystack_ci';
 $db['default']['dbdriver'] = 'mysql';
+/*
+	$db['default']['hostname'] = '50.62.209.86:3306';
+	$db['default']['username'] = 'hs_admin_7000';
+	$db['default']['password'] = 'inI2c_75';
+	$db['default']['database'] = 'haystack';
+*/
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

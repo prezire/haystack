@@ -15,7 +15,7 @@
         Well, the answer is simple. Apply for an Internship. 
         Of course, it's up to your employer whether he'll give you 
         a salary. Perform well and you'll get rewarded 
-        through praises from employers, managers and colleagues. 
+        through praises from employers, managers and academe personnels. 
         Use these praises as good points when applying for a 
         job you like.
       </p>
@@ -34,9 +34,9 @@
 
       <h5>What is Applicant Pooling</h5>
       <p>
-        This feature is specific for employers similar to
-        bookmarks in order to organize applicants. It 
-        contains a Note field for items such as date hired,
+        This feature is specific for employers. It's similar to
+        bookmarks that allows them to organize applicants. It 
+        contains a Note field to enter details such as date hired,
         performance or plans about such applicants.
       </p>
 
@@ -44,18 +44,18 @@
 
       <h5>What are Comments?</h5>
       <p>
-        These are praises, inputs, feedbacks from Subscribers, your employer, 
-        managers based on your performance when you undergo the position
-        you've applied. You can use these items as your reference when 
-        applying for another job.
+        These are praises, inputs, feedbacks from employer, 
+        Subscribers such as managers and academe personnels based on an applicant's 
+        performance when they undergo the applied position. Applicants can use 
+        these items as their reference when applying for another job.
       </p>
 
       <hr />
 
       <h5>What are Applied Internships</h5>
       <p>
-        These are the records of the open positions you've applied along with
-        the date when you actually applied for such position.
+        These are the records of the open positions that the applicant 
+        has applied.
       </p>
 
       <hr />
@@ -75,11 +75,13 @@
       
       <h5>How many resumes can I create?</h5>
       <p>
-        You can create up to 10 resumes. There are 3 different privacy settings to choose from:
+        You can only create 1 resume. 
+        There are 3 different privacy settings to choose from:
         <ul>
-          <li><b>Private</b> - Default. Only you can view the resume.</li>
-          <li><b>Unlisted</b> - The resume is public but the URL is not present in your public profile. Use the Forward button to send the URL to specific employers.</li>
-          <li><b>Public</b> - The resume is public and visible in your public profile from registered users.</li>
+          <li><b>Private</b> - Default. Only you can view the resume</li>
+          <li><b>Unlisted</b> - The resume is public but the URL is not present in your 
+            public profile. Use the Forward button to send the URL to specific employers</li>
+          <li><b>Public</b> - The resume is public and visible in your public profile from registered users</li>
         </ul>
       </p>
 

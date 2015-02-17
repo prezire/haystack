@@ -29,7 +29,7 @@
         	<br /><br />
           
 			Thank you,<br />
-			Simplifie Haystack Team
+			The Simplifie Haystack Team
         </td>
       </tr>
        <tr>

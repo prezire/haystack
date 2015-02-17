@@ -15,7 +15,8 @@
   #ui-datepicker-div a,
   #ui-datepicker-div th,
   #faq li,
-  textarea{font-size: 12px;}
+  textarea,
+  label{font-size: 12px;}
 
   .content h5{margin: 0;}
   button, .button
@@ -99,7 +100,7 @@
   header nav ul li a{padding: 4px 0;}
   header nav ul{margin-top: 40px;}
   header .logo{margin-top: 27px;}
-
+  header .logo img{max-width: 150px !important; height: 45px !important;}
   .row.panel{margin-bottom: 4px; background-color: #fff; padding: 8px;}
   .row.panel .columns{padding-left: 0;}
   /*.row.panel .columns:nth-child(2){margin-top: 11px;}*/
@@ -131,6 +132,7 @@
   /*/Home.*/
   
   /*Applicant.*/
+  #applicant.read #user.read .avatar{margin-left: 15px;}
   #applicant.read .comments .comment
   {
     margin: 4px;
@@ -231,11 +233,19 @@
   #toc strong,
   #eula strong{display: block; margin-top: 20px; margin-bottom: 4px;}
   /*/TOC and EULA.*/
+
+  /*Analytics.*/
+  #analytics input[type="checkbox"],
+  #analytics label{margin: 0;}
+  #analytics input[type="checkbox"]{margin-top: 7px;}
+
+  /*/Analytics.*/
 }
 
 /* min-width 641px, medium screens */
 @media only screen and (min-width: 40.063em) { 
     /*Commons.*/
+    header{padding-left: 0;} 
     #map{min-height: 250px;}
     header .logo{margin-top: 17px; display: inline-block;}
     header nav ul{margin-left: 0;}
@@ -249,7 +259,9 @@
     #comment h4,
     #pooledApplicant h4,
     #applicant h4,
-    #home h4{margin-left: -15px;}
+    #internship.read h4,
+    #home h4,
+    #analytics h4{margin-left: -15px;}
     /*/Commons.*/
 
     /*Home.*/
@@ -276,6 +288,7 @@
     /*/Internship.*/
 
     /*Applicant.*/
+    #applicant.read #user.read .avatar{margin-left: 0;}
     /*/Applicant.*/
 
     /*Pooled Applicant.*/
@@ -287,12 +300,16 @@
 /* min-width 1025px, large screens */
 @media only screen and (min-width: 64.063em) 
 { 
-  header{padding-left: 0; border-right: 1px solid rgba(43, 50, 57, 0.15);}
+  header{padding-left: 20px; border-right: 1px solid rgba(43, 50, 57, 0.15);}
   header nav ul li a{display: block; padding-left: 8px;}
   #internship .row.panel .columns:nth-child(2){margin-top: 0;}
 }
 
-@media only screen and (min-width: 90.063em) { } /* min-width 1441px, xlarge screens */
+/* min-width 1441px, xlarge screens */
+@media only screen and (min-width: 90.063em)
+{
+  header{padding-left: 20px;}
+}
 
 
 @media only screen and (min-width: 120.063em) { } /* min-width 1921px, xxlarge screens */

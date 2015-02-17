@@ -4,14 +4,23 @@
       <h4>New Internship</h4>
     </div>
   </div>
+
     <?php 
-      echo validation_errors();
-      echo form_open('internship/create'); 
-    ?>      
+      echo $this->load->view
+      (
+        'commons/partials/errors', 
+        $this->session->flashdata('error') ? 
+        array('error' => $this->session->flashdata('error')) : 
+        null, 
+        true
+      ); 
+    ?>
+
+    <?php echo form_open('internship/create'); ?>      
       
       <div class="row">
         <div class="large-6 columns">Name: <input type="text" name="name" placeholder="e.g. Project Manager" /></div>
-        <div class="large-6 columns">Salary (USD): <input type="text" name="salary" /></div>
+        <div class="large-6 columns">Salary (USD): <input type="text" name="salary" value="0" /></div>
       </div>
 
       <div class="row">
@@ -30,7 +39,7 @@
       
       <div class="row">
         <div class="large-6 columns">Industry: <?php echo form_dropdown('industry', getIndustries()); ?></div>
-        <div class="large-6 columns">Working Hours: <input type="text" name="working_hours" placeholder="e.g. 9" /></div>
+        <div class="large-6 columns">Working Hours: <input type="text" name="working_hours" placeholder="e.g. 9 AM - 6 PM" /></div>
       </div>
        
       <div class="row">

@@ -5,7 +5,8 @@
     public function __construct()
     {
       parent::__construct();
-      validateLoginSession(array('enable'));
+      //validateLoginSession(array('enable'));
+      $this->load->helper('job_helper');
     }
     public final function enable($state = 1, $enableToken)
     {
@@ -18,7 +19,7 @@
       }
       else
       {
-        show_error('Invalid activation URL. Please try again.');
+        show_error('Invalid activation URL. You may already have enabled your account. Click <a href="' . site_url('auth/forgotPassword') . '">here</a> to trigger the forgot password emailer.');
       }
     }
     public final function register(){showView('auth/register');}
@@ -78,7 +79,7 @@
             (
               'Simplifie Haystack - Forgot Password', 
               $c['admin'],
-              'haystackuser@localhost' /*$user->email*/,  
+              /*'haystackuser@localhost' */$user->email,  
               $this->parser->parse
               (
                 'auth/emailers/forgot_password',
@@ -142,7 +143,7 @@
             showView
             (
               'auth/login', 
-              array('error' => '<p>User not found. Check your credentials and try again.</p>')
+              array('error' => '<p>User not found. Check your credentials or email activation and try again.</p>')
             );
           }
         }

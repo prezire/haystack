@@ -50,13 +50,16 @@ class Internship extends CI_Controller
 	public final function read($id)
 	{
     $this->load->model('internshipapplicationmodel');
+    //TODO: Check if $ia is used properly.
     $ia = $this->internshipapplicationmodel->readBySpecificId($id, 'internship');
-    $bHasApplied = $ia->num_rows() > 0;
+    $bHasApplied = $this->internshipapplicationmodel->hasApplied($id);
+    $i = $this->internshipmodel->read($id)->row();
     $a = array
     (
-      'internship' => $this->internshipmodel->read($id)->row(),
+      'internship' => $i,
       'hasApplied' => $bHasApplied
     );
+    $this->internshipmodel->createImpression($i->internship_id);
 		showView('internships/read', $a);
 	}
   public final function readByIndustry($industry)
@@ -74,21 +77,17 @@ class Internship extends CI_Controller
   }
 	public final function update($id = null)
   {
-    $o = $this->internshipmodel->read($id)->row();
-    $a = array('internship' => $o);
-    if($this->input->post())
+    $i = $this->input;
+    if($i->post())
     {
+      $id = $i->post('id');
+      $o = $this->internshipmodel->read($id)->row();
+      $a = array('internship' => $o);
       if($this->form_validation->run('internship/update'))
       {
-        $b = $this->internshipmodel->update()->row();
-        if($b)
-        {
-          redirect(site_url('internship/update/' . $b->id));
-        }
-        else
-        {
-          show_error('Error updating internship.');
-        }
+        $this->internshipmodel->update();
+        $this->session->set_flashdata('status', 'success');
+        redirect(site_url('internship/update/' . $id));
       }
       else
       {
@@ -97,6 +96,8 @@ class Internship extends CI_Controller
     }
     else
     {
+      $o = $this->internshipmodel->read($id)->row();
+      $a = array('internship' => $o);
       showView('internships/update', $a);
     }
   }

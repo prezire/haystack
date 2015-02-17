@@ -28,7 +28,8 @@
               case 'Employer':
                 echo '<li><a href="' . site_url('internship/readMyPosts') . '">Internships</a></li>';
                 echo '<li><a href="' . site_url('pooledapplicant') . '">Pools</a></li>';
-                //echo '<li><a href="' . site_url('analytics') . '">Analytics</a></li>';
+                echo '<li><a href="' . site_url('member') . '">Members</a></li>';
+                echo '<li><a href="' . site_url('analytics') . '">Analytics</a></li>';
                 echo '<li><a href="' . site_url('comment') . '">Comments</a></li>';
                 echo '<li><a href="' . site_url('internshipapplication') . '">Applications</a></li>';
               break;

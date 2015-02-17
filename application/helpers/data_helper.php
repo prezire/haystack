@@ -64,7 +64,7 @@
   }
   function generateToken($key)
   {
-    return md5($key . date('Ymd') . rand(0, 999) . time());
+    return sha1($key . date('Ymd') . rand(0, 999) . time());
   }
   function getLoggedUser()
   {
@@ -119,7 +119,8 @@
     $CI->load->config('custom_configs');
     $conf = $CI->config->item('email');
     //
-    $CI->email->initialize($conf['server']);
+    //$CI->email->initialize($conf['server']);
+    $CI->load->library('email', $conf['server']);
     $CI->email->set_newline("\r\n");
     $CI->email->from($from);
     $CI->email->to($to);

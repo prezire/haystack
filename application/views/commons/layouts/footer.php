@@ -17,6 +17,10 @@
           ).imgLiquid();
           //
           $('.from, .to').datepicker({dateFormat: 'yy-mm-dd'});
+          //
+          var a = new Analytics();
+          a.siteUrl = '<?php echo site_url(); ?>';
+          a.init();
         });
     </script>
   </section><!-- end main -->  

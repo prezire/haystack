@@ -29,6 +29,12 @@
       $this->db->create('resumes', array('full_name' => $fName));
       return $this->read($this->db->result_id());
     }
+    public final function readByUserId($userId)
+    {
+      $this->load->model('applicantmodel');
+      $applId = $this->applicantmodel->readByUserId($userId)->row()->id;
+      return $this->db->get_where('resumes', array('applicant_id' => $applId));
+    }
     public final function readByApplicantId($applicantId)
     {
       $r = $this->db->get_where

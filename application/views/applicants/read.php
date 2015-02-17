@@ -55,16 +55,19 @@
       } ///if getLoggedUser(). 
     ?>
 
-    <div class="row">
-        <div class="small-12 medium-12 large-12 columns">
-          <h5>Comments</h5>
-        </div>
-      </div>
+    
 
       <div class="row comments">
       <?php 
-        if(isset($comments))
+        if(isset($comments) && count($comments) > 0)
         {
+      ?>
+        <div class="row">
+          <div class="small-12 medium-12 large-12 columns">
+            <h5>Comments</h5>
+          </div>
+        </div>
+      <?php
           foreach($comments as $c)
           {
             //Prevent showing of unapproved comments to

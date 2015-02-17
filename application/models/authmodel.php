@@ -10,7 +10,7 @@
       $i = $this->input;
       $email = $i->post('email');
       $pwd = $i->post('password');
-      $a = array('email' => $email, 'password' => $pwd);
+      $a = array('email' => $email, 'password' => $pwd, 'enabled' => 1);
       return $this->db->get_where('users', $a);
     }
     public final function fbLogin()

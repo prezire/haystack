@@ -17,7 +17,8 @@
     </div>
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">Summary
-            <textarea name="summary[]"></textarea>
+            <textarea name="summary[]" 
+                placeholder="e.g. Description of work and list of portfolios."></textarea>
         </div>
     </div>
 </div>

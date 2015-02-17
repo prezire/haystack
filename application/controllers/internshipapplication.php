@@ -18,27 +18,71 @@
         $this->load->model('applicantmodel');
         $this->load->model('employermodel');
         $uId = getLoggedUser()->id;
-        if(getRoleName() == 'Applicant')
+        $r = getRoleName();
+        if($r == 'Applicant')
         {
           $applId = $this->applicantmodel->readByUserId($uId)->row()->id;
-          $o = $this->internshipapplicationmodel->readBySpecificId($applId, 'applicant')->result();
-          showView('internship_applications/applicant', array('applications' => $o));
+          $o = $this->internshipapplicationmodel->readBySpecificId
+          (
+            $applId, 
+            'applicant'
+          )->result();
+          showView
+          (
+            'internship_applications/applicant', 
+            array('applications' => $o)
+          );
         }
-        else if(getRoleName() == 'Employer')
+        else if($r == 'Employer')
         {
           $emplId = $this->employermodel->readByUserId($uId)->row()->id;
-          $o = $this->internshipapplicationmodel->readBySpecificId
+          $oAppliedInternships = $this->internshipapplicationmodel->readBySpecificId
           (
             $emplId, 
             'employer'
           )->result();
+          $aAppliedInternships = array();
+          foreach($oAppliedInternships as $ai)
+          {
+            $tmpApplInterns = array();
+            $tmpApplInterns['id'] = $ai->id;
+            $tmpApplInterns['internshipId'] = $ai->internship_id;
+            $tmpApplInterns['name'] = $ai->name;
+            $tmpApplInterns['description'] = $ai->description;
+            $tmpApplInterns['dateFrom'] = $ai->date_from;
+            $tmpApplInterns['dateTo'] = $ai->date_to;
+            $tmpApplInterns['vacancyCount'] = $ai->vacancy_count;
+            $summary = $this->internshipapplicationmodel->readDetails
+            (
+              $ai->internship_id
+            );
+            $count = $summary->num_rows();
+            $tmpApplInterns['summaryCount'] = $count;
+            $applicants = $summary->result();
+            $tmpApplInterns['applicants'] = array();
+            foreach($applicants as $applicant)
+            {
+              $applId = $applicant->id;
+              $fullName = $applicant->full_name;
+              $applCurrPosTtl = $applicant->current_position_title;
+              $tmpApplicants = array
+              (
+                'applicant' => array
+                (
+                  'id' => $applId,
+                  'fullName' => $fullName,
+                  'currentPositionTitle' => $applCurrPosTtl,
+                  'dateTimeApplied' => $applicant->date_time_applied
+                )
+              );
+              array_push($tmpApplInterns['applicants'], $tmpApplicants);
+            }
+            array_push($aAppliedInternships, $tmpApplInterns);
+          }
           showView
           (
             'internship_applications/employer', 
-            array
-            (
-              'applications' => $o
-            )
+            array('appliedInternships' => $aAppliedInternships)
           );
         }
         

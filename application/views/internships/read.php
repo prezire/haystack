@@ -23,20 +23,16 @@
           if(getLoggedUser())
           {
             $usr = getLoggedUser();
-            $roleName = getRoleById($usr->role_id)->row()->name;
+            $roleName = getRoleName();
             if($roleName == 'Applicant')
             {
               if(!$hasApplied)
               {
                 $sDisabled = '';
               }
-            }
-            else if($roleName == "Employer")
-            {
-              echo '<a href="' . site_url('internship/update/' . $internship->internship_id) . '" class="button radius small">Update</a> ';    
+              echo '<a href="' . site_url('internshipapplication/createFromApplication/' . $internship->internship_id) . '" class="' . $sDisabled . 'button radius small apply"><i class="fa fa-check-circle"></i> Apply</a> ';
             }
           }
-          echo '<a href="' . site_url('internshipapplication/createFromApplication/' . $internship->internship_id) . '" class="' . $sDisabled . 'button radius small apply"><i class="fa fa-check-circle"></i> Apply</a> ';
           //echo '<a href="#" class="' . $sDisabled . 'button tiny radius"><i class="fa fa-bookmark"></i> Bookmark</a>';
         ?>
       </div>
@@ -62,7 +58,7 @@
       <strong>Shift Pattern:</strong> <?php echo $internship->shift_pattern; ?>
     </div>
     <div class="small-12 medium-6 large-6 columns">
-      <strong>Salary:</strong> $<?php echo $internship->salary; ?><br /><br />
+      <strong>Salary (USD):</strong> <?php echo $internship->salary; ?><br /><br />
 
       <strong>Vacancy:</strong> <?php echo $internship->vacancy_count; ?>
     </div>
@@ -74,11 +70,20 @@
       <?php echo $internship->organization_name; ?>
     </div>
     <div class="small-12 medium-6 large-6 columns">
-      <strong>Address:</strong> <?php echo $internship->address; ?><br /><br />
+      <strong>Address:</strong> <?php echo $internship->internship_address; ?><br /><br />
       <strong>Country:</strong> <?php echo $internship->country; ?>
     </div>
   </div>
   
     
 </form>
+  <?php
+    if(getLoggedUser())
+    { 
+      if($roleName == "Employer")
+      {
+        echo '<a href="' . site_url('internship/update/' . $internship->internship_id) . '" class="button radius small">Update</a> ';    
+      }
+    }
+  ?>
 </div>

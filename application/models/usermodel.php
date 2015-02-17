@@ -99,11 +99,8 @@
 			$i = $this->input;
       $id = $i->post('id');
 			$this->db->where('id', $id);
-			$this->db->update
-      (
-        'users', 
-        getPostValuePair()
-      );
+      $a = getPostValuePair();
+			$this->db->update('users', $a);
       $this->uploadAvatar($i->post('id'));
       return $this->read($i->post('id'));
 		}

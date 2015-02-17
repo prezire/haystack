@@ -1,7 +1,7 @@
 <div id="user" class="read row">
       
       <div class="row">
-        <div class="large-11 columns avatar">
+        <div class="small-6 medium-10 large-10 columns avatar">
           <?php 
             $img = $user->image_path;
             $img = $img ? 
@@ -10,7 +10,7 @@
           ?>
           <img src="<?php echo $img; ?>" />
         </div>
-        <div class="large-1 columns">
+        <div class="small-6 medium-2 large-2 columns">
           <?php 
             if(getRoleName() == 'Employer')
             {
@@ -29,6 +29,10 @@
               echo '&nbsp;';
             }
           ?>
+          <a class="button tiny radius" 
+              href="<?php echo site_url('resume/readByUserId/' . $user->id); ?>">
+            View resume
+          </a>
         </div>
       </div>
       <br />

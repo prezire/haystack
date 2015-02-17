@@ -25,9 +25,32 @@
 				return $this->read($this->db->insert_id());
 			}
 		}
+    public final function createImpression($internshipId)
+    {
+      $ip = $this->input->ip_address(); 
+      //$ip = '180.191.112.3';
+      //KLUDGE: Very slow.
+      //http://devus.geobytes.com/geoif/?location=69.16.219.22
+      $json = file_get_contents('http://gd.geobytes.com/GetCityDetails?fqcn='. $ip);
+      $data = json_decode($json);
+      $addr = $data->geobytesfqcn;
+      //
+      $a = array
+      (
+        'internship_id' => $internshipId,
+        'ip_address' => $ip,
+        'address' => $addr
+      );
+      $this->db->insert('internship_impressions', $a);
+    }
 		public final function read($id)
 		{
-      $this->db->select('*, i.id internship_id, i.id employer_id');
+      $this->db->select
+      (
+        '*, i.id internship_id, 
+        e.id employer_id, 
+        i.address internship_address'
+      );
       $this->db->from('internships i');
       $this->db->join('employers e', 'e.id = i.employer_id');
       $this->db->join('users u', 'e.user_id = u.id');
@@ -46,7 +69,7 @@
     {
       $this->db->select("industry, count(id) as count");
 			$this->db->from('internships');
-      $this->db->where("NOW() BETWEEN date_from AND date_to");
+      $this->db->where("date_to > NOW()");
       $this->db->group_by('industry');
 			return $this->db->get();
     }
@@ -69,7 +92,7 @@
 			$this->db->update
       (
         'internships', 
-        getPostValuePair()
+        getPostValuePair(array('id', 'employer_id'))
       );
 		}
 		public final function delete($id)

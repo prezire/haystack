@@ -24,9 +24,9 @@
         
         <div class="large-10 columns">
           <button class="small radius">Login</button>
-          <a class="button radius tiny btnFb" permissions="public_profile,email,user_location,user_birthday,user_website,user_friends,user_about_me,user_education_history,user_photos,user_work_history">
+          <!--a class="button radius tiny btnFb" permissions="public_profile,email,user_location,user_birthday,user_website,user_friends,user_about_me,user_education_history,user_photos,user_work_history">
             Sign in with Facebook
-          </a>
+          </a-->
           <div id="status"></div>
         </div>
       </form>
@@ -36,7 +36,7 @@
   <div class="row options">
     <div class="large-2 medium-12 small-12 columns">&nbsp;</div>
     <div class="large-10 medium-12 small-12 columns">
-      <a href="<?php echo site_url('auth/register'); ?>">Regsiter</a> | 
+      <a href="<?php echo site_url('auth/register'); ?>">Register</a> | 
       <a href="<?php echo site_url('auth/forgotPassword'); ?>">Forgot Password</a>
       <br /><br />
     </div>

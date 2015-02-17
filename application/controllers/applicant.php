@@ -36,7 +36,7 @@ class Applicant extends CI_Controller
           (
             'Simplifie Haystack - Verify Account',
             $conf['admin'],
-            'haystackuser@localhost' /*$o->email*/,
+            /*'haystackuser@localhost' */$o->email,
             $this->parser->parse
             (
               'auth/emailers/account_activation', 
@@ -65,10 +65,18 @@ class Applicant extends CI_Controller
   }
 	public final function read($id)
 	{
-    $appl = $this->applicantmodel->read($id)->row();
     $this->load->model('usermodel');
+    $this->load->model('resumemodel');
+    $appl = $this->applicantmodel->read($id)->row();
     $user = $this->usermodel->read($appl->user_id)->row();
-    $a = array('applicant' => $appl, 'user' => $user);
+    //TODO: Multiple resumes.
+    $resumes = $this->resumemodel->readByApplicantId($appl->id);
+    $a = array
+    (
+      'applicant' => $appl, 
+      'user' => $user,
+      'resumes' => $resumes['resume']
+    );
     $this->load->model('commentmodel');
     $a['comments'] = $this->commentmodel->readByUserId($user->id, 'to')->result();
     if(getRoleName() == 'Employer')

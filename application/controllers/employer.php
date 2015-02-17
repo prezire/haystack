@@ -36,7 +36,7 @@ class Employer extends CI_Controller
           (
             'Simplifie Haystack - Verify Account',
             $conf['admin'],
-            'haystackuser@localhost' /*$o->email*/,
+            /*'haystackuser@localhost' */$o->email,
             $this->parser->parse
             (
               'auth/emailers/account_activation', 

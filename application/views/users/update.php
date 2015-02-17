@@ -45,14 +45,14 @@
       <div class="row">
           <?php 
             $t = set_value('title', $user->title); 
-            $mr = $t == 'Mr.';
-            $ms = $t == 'Ms.';
-            $mrs = $t == 'Mrs.';
+            $mr = $t == 'Mr.' ? 'checked' : '';
+            $ms = $t == 'Ms.' ? 'checked' : '';
+            $mrs = $t == 'Mrs.' ? 'checked' : '';
           ?>
           <div class="large-12 columns">
-            <input type="radio" name="title" value="Mr." checked="<?php echo $mr; ?>" id="mr" /><label for="mr">Mr.</label>
-            <input type="radio" name="title" value="Ms." checked="<?php echo $ms; ?>" id="ms" /><label for="ms">Ms.</label>
-            <input type="radio" name="title" value="Mrs." checked="<?php echo $mrs; ?>" id="mrs" /><label for="mrs">Mrs.</label>   
+            <input type="radio" name="title" value="Mr." <?php echo $mr; ?> id="mr" /><label for="mr">Mr.</label>
+            <input type="radio" name="title" value="Ms." <?php echo $ms; ?> id="ms" /><label for="ms">Ms.</label>
+            <input type="radio" name="title" value="Mrs." <?php echo $mrs; ?> id="mrs" /><label for="mrs">Mrs.</label>   
           </div>
       </div>
       <div class="row">
@@ -62,7 +62,7 @@
       
       <div class="row">
         <div class="large-6 columns">Alternate Email: <input type="text" name="alternate_email" value="<?php echo set_value('alternate_email', $user->alternate_email); ?>" /></div>      
-        <div class="large-6 columns">Password: <input type="text" name="password" value="<?php echo set_value('password', $user->password); ?>" /></div>
+        <div class="large-6 columns">Password: <input type="password" name="password" value="<?php echo set_value('password', $user->password); ?>" /></div>
       </div>
             
       <div class="row">
@@ -94,7 +94,7 @@
             (
               'country', 
               getCountries(), 
-              set_value('country')
+              set_value('country', $user->country)
             ); 
           ?>
         </div>

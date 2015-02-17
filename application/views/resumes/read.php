@@ -60,12 +60,13 @@
             <strong>Availability:</strong> <?php echo $resume->availability; ?>
           </div>
           <div class="small-6 medium-6 large-6 columns">
-            <strong>Expected Salary:</strong> USD <?php echo $resume->expected_salary; ?>
+            <strong>Expected Salary (USD):</strong> <?php echo $resume->expected_salary; ?>
           </div>
         </div>
         <div class="row">
           <div class="small-6 medium-6 large-6 columns">
-            <strong>Current Industry:</strong> <?php echo $resume->current_industry; ?>
+            <strong>Current Position Title:</strong> 
+            <?php echo $resume->current_position_title; ?>
           </div>
           <div class="small-6 medium-6 large-6 columns">
             <strong>Qualification:</strong> <?php echo $resume->qualification; ?>
@@ -120,7 +121,7 @@
                 <div class="row">
                     <div class="small-12 medium-12 large-12 columns">
                       <strong>Summary:</strong>
-                      <?php echo $w->summary; ?>
+                      <?php echo nl2br($w->summary); ?>
                     </div>
                 </div>
             
@@ -255,12 +256,17 @@
       </div>
       <div class="row">
         <div class="small-12 medium-12 large-12 columns">
-          <?php echo $resume->additional_information; ?>
+          <?php echo nl2br($resume->additional_information); ?>
         </div>
       </div>
     </section>
   </section>
-  <?php if(isLoggedIn()){ ?>
+  <?php 
+    if(isLoggedIn())
+    { 
+      if(getRoleName() == 'Applicant')
+      {
+  ?>
   <div class="row">
     <div class="small-12 medium-12 large-12 columns">
       <a href="<?php echo site_url('resume/updateBySession'); ?>" class="button tiny radius">
@@ -268,5 +274,8 @@
       </a>
     </div>
   </div>
-  <?php } ?>
+  <?php
+      } 
+    } 
+  ?>
 </div>

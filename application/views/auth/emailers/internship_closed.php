@@ -26,7 +26,7 @@
 					For the rest, we thank you for using {site_url} and wish you all the best in your job search.<br /><br />
 
 					Sincerely,<br />
-					Simplifie Haystack Team.
+					The Simplifie Haystack Team.
 				</td>
 			</tr>
 		</table>

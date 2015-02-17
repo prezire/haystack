@@ -15,6 +15,7 @@ class Resume extends CI_Controller
       )
     );
     $this->load->model('resumemodel');
+    $this->load->helper('job_helper');
 	}
   public final function index()
   {
@@ -22,10 +23,26 @@ class Resume extends CI_Controller
     showView('resumes/index', array('resumes' => $o));
   }
   //@param  $recipients   Comma-separated string.
-  public final function forward($applicantId, $recipients)
+  public final function forward($recipients)
   {
-    //$this->exportResume($applicantId);
-
+    $u = getLoggedUser();
+    $this->load->model('resumemodel');
+    $rId = $this->resumemodel->readByUserId($u->id)->row()->id;
+    $a = array
+    (
+      'complete_name' => $u->complete_name,
+      'resume_url' => site_url('resume/read/'. $rId)
+    );
+    sendEmailer
+    (
+      'Simplifie Haystack Resume',
+      $u->email,
+      $recipients,
+      $this->parser->parse
+      (
+        'resumes/emailer', $a, true
+      )
+    );
   }
   public final function create()
   {
@@ -58,6 +75,17 @@ class Resume extends CI_Controller
     $a = $this->resumemodel->readDetails($id);
 		showView('resumes/read', $a);
 	}
+  public final function readByUserId($userId)
+  {
+    $this->load->model('applicantmodel');
+    $applId = $this->applicantmodel->readByUserId($userId)->row()->id;
+    $rId = $this->db->get_where
+    (
+      'resumes', 
+      array('applicant_id' => $applId)
+    )->row()->id;
+    redirect(site_url('resume/read/' . $rId));
+  }
   public final function updateBySession()
   {
     if(!isLoggedIn()) redirect(site_url('auth/login'));

@@ -214,7 +214,37 @@ $config = array
 		(
 			'field' => 'name',
 			'label' => 'Name',
-			'rules' => ''
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'address',
+			'label' => 'Address',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'date_from',
+			'label' => 'Date From',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'date_to',
+			'label' => 'Date To',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'working_hours',
+			'label' => 'Working Hours',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'vacancy_count',
+			'label' => 'Vacancy Count',
+			'rules' => 'required|xss_clean|trim'
 		)
 	),
   	'internship/update' => array
@@ -223,7 +253,37 @@ $config = array
 		(
 			'field' => 'name',
 			'label' => 'Name',
-			'rules' => ''
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'address',
+			'label' => 'Address',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'date_from',
+			'label' => 'Date From',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'date_to',
+			'label' => 'Date To',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'working_hours',
+			'label' => 'Working Hours',
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'vacancy_count',
+			'label' => 'Vacancy Count',
+			'rules' => 'required|xss_clean|trim'
 		)
 	),
   	'resume/update' => array
@@ -309,5 +369,95 @@ $config = array
         'label' => 'Comment',
         'rules' => 'required|xss_clean|trim'
       )
-    )
+    ),
+    'organization/create' => array
+	(
+		array
+		(
+			'field' => 'name', 
+			'label' => 'Name', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'address', 
+			'label' => 'Address', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'city', 
+			'label' => 'City', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'country', 
+			'label' => 'Country', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'zip_code', 
+			'label' => 'Zip Code', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'name', 
+			'label' => 'Name', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'landline', 
+			'label' => 'Landline', 
+			'rules' => 'required|xss_clean|trim'
+		)
+	),
+	'organization/update' => array
+	(
+		array
+		(
+			'field' => 'name', 
+			'label' => 'Name', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'address', 
+			'label' => 'Address', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'city', 
+			'label' => 'City', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'country', 
+			'label' => 'Country', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'zip_code', 
+			'label' => 'Zip Code', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'name', 
+			'label' => 'Name', 
+			'rules' => 'required|xss_clean|trim'
+		),
+		array
+		(
+			'field' => 'landline', 
+			'label' => 'Landline', 
+			'rules' => 'required|xss_clean|trim'
+		)
+	)
 );

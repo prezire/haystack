@@ -13,10 +13,11 @@
       </div>
       <div class="row">
         <div class="large-6 columns">
-          Current Job Title: <input type="text" name="current_position_title" placeholder="e.g. Web Developer, Student" value="<?php echo set_value('current_position_title'); ?>" />
+          Current Job Title: <?php echo form_dropdown('current_position_title', getJobTitles(), set_value('current_position_title')); ?>
         </div>
          <div class="large-6 columns">
-          Desired Internship Position: <input type="text" name="desired_internship_position" placeholder="e.g. Management" value="<?php echo set_value('desired_internship_position'); ?>" />
+          Desired Internship Position: 
+          <?php echo form_dropdown('desired_internship_position', getJobTitles(), set_value('desired_internship_position')); ?>
         </div>
       </div>
       <div class="row">

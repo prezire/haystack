@@ -58,7 +58,9 @@
         Full Name:*
       </div>
       <div class="large-10 columns">
-        <input type="text" name="full_name" value="<?php echo set_value('full_name'); ?>" />
+        <input type="text" 
+                name="full_name" 
+                value="<?php echo set_value('full_name'); ?>" />
       </div>
       <div class="large-2 columns">
         Email:*
@@ -70,7 +72,10 @@
         Topic:*
       </div>
       <div class="large-10 columns">
-        <input type="text" name="topic" value="<?php echo set_value('topic'); ?>" />
+        <input type="text" 
+                name="topic" 
+                placeholder="Inquiries, feature requests, anything at all..."
+                value="<?php echo set_value('topic'); ?>" />
       </div>
       <div class="large-2 columns">
         Message:*
