@@ -377,42 +377,6 @@ $config = array
 			'field' => 'name', 
 			'label' => 'Name', 
 			'rules' => 'required|xss_clean|trim'
-		),
-		array
-		(
-			'field' => 'address', 
-			'label' => 'Address', 
-			'rules' => 'required|xss_clean|trim'
-		),
-		array
-		(
-			'field' => 'city', 
-			'label' => 'City', 
-			'rules' => 'required|xss_clean|trim'
-		),
-		array
-		(
-			'field' => 'country', 
-			'label' => 'Country', 
-			'rules' => 'required|xss_clean|trim'
-		),
-		array
-		(
-			'field' => 'zip_code', 
-			'label' => 'Zip Code', 
-			'rules' => 'required|xss_clean|trim'
-		),
-		array
-		(
-			'field' => 'name', 
-			'label' => 'Name', 
-			'rules' => 'required|xss_clean|trim'
-		),
-		array
-		(
-			'field' => 'landline', 
-			'label' => 'Landline', 
-			'rules' => 'required|xss_clean|trim'
 		)
 	),
 	'organization/update' => array

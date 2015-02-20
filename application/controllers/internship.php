@@ -59,7 +59,7 @@ class Internship extends CI_Controller
       'internship' => $i,
       'hasApplied' => $bHasApplied
     );
-    $this->internshipmodel->createImpression($i->internship_id);
+    //$this->internshipmodel->createImpression($i->internship_id);
 		showView('internships/read', $a);
 	}
   public final function readByIndustry($industry)
