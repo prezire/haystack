@@ -23,10 +23,10 @@
     
     Exclude is used when there are are a lot of methodNames 
     and only a few methods that does need any checking. When
-    exclude is used all methods are checked except for the ones
+    exclude is used, all methods are checked except for the ones
     listed in the methodNames.
 
-    Example:
+    Examples:
     1. validateLoginSession(array('index', 'create'))
       - If method is index or create, this method checks for session.
 
